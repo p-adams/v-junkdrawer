@@ -7,6 +7,9 @@ template.innerHTML = `
     justify-content: space-evenly;
     
   }
+  .tab-container .tab {
+    cursor: pointer;
+  }
   .tab-container .tab.active {
     border-bottom: 1px solid blue;
   }
@@ -24,6 +27,14 @@ customElements.define(
       super();
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
+      const tabContainer = this.shadowRoot.querySelector(".tab-container");
+      const children = tabContainer.children;
+      for (let idx = 0; idx < children.length; idx++) {
+        const currentTab = children[idx];
+        currentTab.addEventListener("click", () => {
+          console.log(currentTab);
+        });
+      }
     }
   }
 );
