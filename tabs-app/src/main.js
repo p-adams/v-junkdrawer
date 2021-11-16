@@ -25,6 +25,7 @@ customElements.define(
   class extends HTMLElement {
     constructor() {
       super();
+      this._activeTab = null;
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
       const tabContainer = this.shadowRoot.querySelector(".tab-container");
@@ -32,7 +33,11 @@ customElements.define(
       for (let idx = 0; idx < children.length; idx++) {
         const currentTab = children[idx];
         currentTab.addEventListener("click", () => {
-          console.log(currentTab);
+          this.shadowRoot
+            .querySelectorAll(".tab")
+            .forEach((tab) => tab.classList.remove("active"));
+
+          currentTab.classList.add("active");
         });
       }
     }
