@@ -28,11 +28,7 @@ template.innerHTML = `
  }
  </style>
  <div class="tab-wrapper">
-  <div class="tab-container">
-    <div class="tab active">tab a</div>
-    <div class="tab">tab b</div>
-    <div class="tab">tab c</div>
-  </div>
+  <div class="tab-container"></div>
   <div class="tab-content active">
   <h4>tab a</h4>
   <p>foo</p>
@@ -45,6 +41,10 @@ template.innerHTML = `
     <h4>tab c</h4>
     <p>baz</p>
   </div>
+  <div class="tab-content">
+    <h4>tab d</h4>
+    <p>quux</p>
+  </div>
 </div>
   
   `;
@@ -56,7 +56,19 @@ customElements.define(
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
       const tabContainer = this.shadowRoot.querySelector(".tab-container");
+      this.tabs = JSON.parse(this.getAttribute("tabs"));
+      for (let i = 0; i < this.tabs.length; i++) {
+        const newTab = document.createElement("div");
+        newTab.textContent = this.tabs[i].label;
+        newTab.classList.add("tab");
+        if (i === 0) {
+          newTab.classList.add("active");
+        }
+        tabContainer.appendChild(newTab);
+      }
+
       const children = tabContainer.children;
+
       for (let idx = 0; idx < children.length; idx++) {
         const currentTab = children[idx];
         currentTab.addEventListener("click", () => {

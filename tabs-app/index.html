@@ -11,6 +11,17 @@
       <tabs-app />
     </div>
 
-    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/main.js" defer></script>
+    <script>
+      const tabs = [
+        { label: "tab a" },
+        { label: "tab b" },
+        { label: "tab c" },
+        { label: "tab d" },
+      ];
+      document
+        .querySelector("tabs-app")
+        .setAttribute("tabs", JSON.stringify(tabs));
+    </script>
   </body>
 </html>
