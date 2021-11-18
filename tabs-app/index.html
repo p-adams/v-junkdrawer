@@ -8,17 +8,16 @@
   </head>
   <body>
     <div id="app">
-      <tabs-app />
+      <tabs-app>
+        <div slot="tab a">Tab A content</div>
+        <div slot="tab b">Tab B content</div>
+        <div slot="tab c">Tab C content</div>
+      </tabs-app>
     </div>
 
     <script type="module" src="./src/main.js" defer></script>
     <script>
-      const tabs = [
-        { label: "tab a" },
-        { label: "tab b" },
-        { label: "tab c" },
-        { label: "tab d" },
-      ];
+      const tabs = [{ label: "tab a" }, { label: "tab b" }, { label: "tab c" }];
       document
         .querySelector("tabs-app")
         .setAttribute("tabs", JSON.stringify(tabs));

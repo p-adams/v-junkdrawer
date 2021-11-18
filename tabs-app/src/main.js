@@ -29,22 +29,7 @@ template.innerHTML = `
  </style>
  <div class="tab-wrapper">
   <div class="tab-container"></div>
-  <div class="tab-content active">
-  <h4>tab a</h4>
-  <p>foo</p>
-  </div>
-  <div class="tab-content">
-    <h4>tab b</h4>
-    <p>bar</p>
-  </div>
-  <div class="tab-content">
-    <h4>tab c</h4>
-    <p>baz</p>
-  </div>
-  <div class="tab-content">
-    <h4>tab d</h4>
-    <p>quux</p>
-  </div>
+  <div class="tab-content-container"></div>
 </div>
   
   `;
@@ -56,15 +41,24 @@ customElements.define(
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
       const tabContainer = this.shadowRoot.querySelector(".tab-container");
+      const tabContentContainer = this.shadowRoot.querySelector(
+        ".tab-content-container"
+      );
       this.tabs = JSON.parse(this.getAttribute("tabs"));
+      // create tabs and tab content
       for (let i = 0; i < this.tabs.length; i++) {
         const newTab = document.createElement("div");
+        const newTabContent = document.createElement("slot");
+        newTabContent.setAttribute("name", this.tabs[i].label);
         newTab.textContent = this.tabs[i].label;
         newTab.classList.add("tab");
+        newTabContent.classList.add("tab-content");
         if (i === 0) {
           newTab.classList.add("active");
+          newTabContent.classList.add("active");
         }
         tabContainer.appendChild(newTab);
+        tabContentContainer.appendChild(newTabContent);
       }
 
       const children = tabContainer.children;
