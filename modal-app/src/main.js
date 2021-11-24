@@ -44,6 +44,15 @@ customElements.define(
       super();
       this.attachShadow({ mode: "open" });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
+      const modalContainer = this.shadowRoot.querySelector(".modal");
+      const contentWrapper = this.shadowRoot.querySelector(".content-wrapper");
+      modalContainer.addEventListener("click", (e) => {
+        modalContainer.style.display = "none";
+        console.log("close");
+      });
+      contentWrapper.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
     }
   }
 );
