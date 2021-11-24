@@ -48,7 +48,6 @@ customElements.define(
       const contentWrapper = this.shadowRoot.querySelector(".content-wrapper");
       modalContainer.addEventListener("click", (e) => {
         modalContainer.style.display = "none";
-        console.log("close");
       });
       contentWrapper.addEventListener("click", (e) => {
         e.stopPropagation();
