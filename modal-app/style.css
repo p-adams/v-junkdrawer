@@ -4,3 +4,15 @@
   -moz-osx-font-smoothing: grayscale;
   color: black;
 }
+
+.dismiss {
+  font-size: 24px;
+  display: grid;
+  place-items: end;
+  cursor: pointer;
+}
+
+.modal-actions {
+  display: grid;
+  place-items: end;
+}

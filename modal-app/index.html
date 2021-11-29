@@ -9,7 +9,25 @@
   <body>
     <div id="app">
       <button>open modal</button>
-      <modal-app />
+      <modal-app>
+        <div slot="modal-content">
+          <div slot="modal-dismiss" class="dismiss">&times;</div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Dis
+            parturient montes nascetur ridiculus mus mauris vitae ultricies.
+            Sodales ut etiam sit amet nisl purus in. Ullamcorper sit amet risus
+            nullam eget felis eget nunc lobortis. Ornare arcu dui vivamus arcu
+            felis bibendum ut tristique et.
+          </p>
+          <div slot="modal-actions" class="modal-actions">
+            <div class="btn-group">
+              <button id="cancel-btn">cancel</button>
+              <button id="confirm-btn">confirm</button>
+            </div>
+          </div>
+        </div>
+      </modal-app>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
