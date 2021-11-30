@@ -1,10 +1,8 @@
 <script setup lang="ts"></script>
 <template>
   <div class="app-container">
-    <header>
-      <router-link to="/">Home</router-link>
-    </header>
     <div class="sidebar">
+      <router-link to="/">Home</router-link>
       <router-link to="/counter">Counter</router-link>
       <router-link to="/tabs">Tabs</router-link>
       <router-link to="/modal">Modal</router-link>
@@ -16,7 +14,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 :root * {
   margin: 0;
   padding: 0;
@@ -28,9 +26,31 @@
   color: #2c3e50;
 }
 .app-container {
-  outline: 1px solid red;
+  display: grid;
+  grid-template-columns: 200px auto;
+  padding: 10px;
   height: 100vh;
-  padding: 0;
-  margin: 0;
+  margin-top: 47px;
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    a {
+      margin-bottom: 33px;
+      &.router-link-active {
+        &.router-link-exact-active {
+          color: blue;
+        }
+      }
+    }
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>

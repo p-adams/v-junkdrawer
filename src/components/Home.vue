@@ -1,6 +1,9 @@
 <script setup lang="ts"></script>
 
-<template>hello</template>
+<template>
+  <h2>Vue Junkdrawer</h2>
+  <h4>Experiments with Vue Components</h4>
+</template>
 
 <style scoped>
 a {
