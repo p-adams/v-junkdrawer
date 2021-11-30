@@ -4,11 +4,11 @@
     <header>
       <router-link to="/">Home</router-link>
     </header>
-    <sidebar>
+    <div class="sidebar">
       <router-link to="/counter">Counter</router-link>
       <router-link to="/tabs">Tabs</router-link>
       <router-link to="/modal">Modal</router-link>
-    </sidebar>
+    </div>
     <main>
       <router-view />
     </main>
