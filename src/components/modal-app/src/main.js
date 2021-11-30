@@ -24,9 +24,9 @@ template.innerHTML = `
 </style>
 <div class="modal">
   <div class="content-wrapper">
-  <slot name="modal-dismiss"/>
-  <slot name="modal-content"/>
-  <slot name="modal-actions"/>
+    <slot name="modal-dismiss" class="dismiss"/>
+    <slot name="modal-content"/>
+    <slot name="modal-actions"/>
   </div>
 </div>
 `;

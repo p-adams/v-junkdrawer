@@ -1,3 +1,3 @@
-# web-components-sandbox
+# Vue Component Junk Drawer
 
-Experiments with Web Components 🧪
+Experiments with Vue Components 🧪
