@@ -6,6 +6,7 @@
       <router-link to="/counter">Counter</router-link>
       <router-link to="/tabs">Tabs</router-link>
       <router-link to="/modal">Modal</router-link>
+      <router-link to="/accordion">Accordion</router-link>
     </div>
     <main>
       <router-view />

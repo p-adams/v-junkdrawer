@@ -1,7 +1,23 @@
 <script setup lang="ts">
 import { ref } from "@vue/reactivity";
+import { onMounted } from "@vue/runtime-core";
 
 const count = ref(0);
+const snippetRef = ref();
+const markup = `
+      <template >
+      <h3>Counter App</h3>
+      <div class='counter-wrapper'>
+        <p>{{ count }}</p>
+        <div class='counter-actions'>
+          <button @click='count--'>-</button>
+          <button @click='count++'>+</button>
+        </div>
+      </div>
+    </template>`;
+onMounted(() => {
+  snippetRef.value.innerText = snippetRef.value.innerHTML;
+});
 </script>
 
 <template>
@@ -13,6 +29,20 @@ const count = ref(0);
       <button @click="count++">+</button>
     </div>
   </div>
+  <pre>
+  <code ref="snippetRef">
+    
+    import { ref } from "@vue/reactivity";
+
+    const count = ref(0);
+      
+    <div :v-html="markup"/>
+    
+     
+   
+
+  </code>
+  </pre>
 </template>
 
 <style lang="scss" scoped>
