@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../components/Home.vue";
 import Counter from "../components/Counter.vue";
-import Modal from "../components/Modal.vue";
-import Tabs from "../components/Tabs.vue";
+import Modal from "../components/modal/Modal.vue";
+import Tabs from "../components/tabs/Tabs.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
