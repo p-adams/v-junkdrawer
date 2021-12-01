@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
-
+import { marked } from "marked";
 const count = ref(0);
 const snippetRef = ref();
 const markup = `
-      <template >
+      <template>
       <h3>Counter App</h3>
       <div class='counter-wrapper'>
         <p>{{ count }}</p>
