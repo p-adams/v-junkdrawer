@@ -1,7 +1,8 @@
 <script lang="ts">
-
+// component that receives code snippet string as props
+ defineProps<{snippet: string}>()
 </script>
 <template>
-<!--component that receives code snippet string as props-->
+
 </template>
 <style
