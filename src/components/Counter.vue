@@ -1,24 +1,23 @@
 <script setup lang="ts">
 import { ref } from "@vue/reactivity";
-import { marked } from "marked";
+import CodeSnippet from "../components/v-snippet.vue";
 const count = ref(0);
-const markup = marked(
-  `    // script  
-    import { ref } from "@vue/reactivity";
-    const count = ref(0);
-
-    <!-- template -->
-    <h3>Counter App</h3>
-    <div class="counter-wrapper">
-      <p>{{ count }}</p>
-      <div class="counter-actions">
-        <button @click='count--'>-</button>
-        <button @click='count++'>+</button>
+const markup = ` 
+    <script>
+      import { ref } from "@vue/reactivity";
+      const count = ref(0);
+    <script>
+    <template>
+      <h3>Counter App</h3>
+      <div class="counter-wrapper">
+        <p>{{ count }}</p>
+        <div class="counter-actions">
+          <button @click='count--'>-</button>
+          <button @click='count++'>+</button>
+        </div>
       </div>
-    </div>
-    `,
-  { sanitize: true }
-);
+    </template>
+    `;
 </script>
 
 <template>
@@ -30,9 +29,7 @@ const markup = marked(
       <button @click="count++">+</button>
     </div>
   </div>
-  <div class="code-snippet">
-    <div v-html="markup" />
-  </div>
+  <CodeSnippet :snippet="markup" />
 </template>
 
 <style lang="scss" scoped>
