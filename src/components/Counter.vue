@@ -3,19 +3,19 @@ import { ref } from "@vue/reactivity";
 import { marked } from "marked";
 const count = ref(0);
 const markup = marked(
-  `          // Code   
-          import { ref } from "@vue/reactivity";
-          const count = ref(0);
+  `    // script  
+    import { ref } from "@vue/reactivity";
+    const count = ref(0);
 
-          // markup
-          <h3>Counter App</h3>
-          <div class='counter-wrapper'>
-            <p>{{ count }}</p>
-            <div class='counter-actions'>
-              <button @click='count--'>-</button>
-              <button @click='count++'>+</button>
-            </div>
-          </div>
+    <!-- template -->
+    <h3>Counter App</h3>
+    <div class="counter-wrapper">
+      <p>{{ count }}</p>
+      <div class="counter-actions">
+        <button @click='count--'>-</button>
+        <button @click='count++'>+</button>
+      </div>
+    </div>
     `,
   { sanitize: true }
 );
@@ -30,7 +30,7 @@ const markup = marked(
       <button @click="count++">+</button>
     </div>
   </div>
-  <div class="snippet">
+  <div class="code-snippet">
     <div v-html="markup" />
   </div>
 </template>
@@ -57,8 +57,11 @@ h3 {
       width: 130px;
     }
   }
-  .snippet {
-    border: 1px solid gray;
-  }
+}
+.code-snippet {
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
 }
 </style>
