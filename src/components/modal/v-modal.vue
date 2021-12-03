@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps<{ mask: boolean; isOpen: boolean }>();
+console.log(props);
+</script>
 
 <template>
-  <h3>Modal App</h3>
+  <div :class="['modal', { mask: mask }]">Modal App</div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

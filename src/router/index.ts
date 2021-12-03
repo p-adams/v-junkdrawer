@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../components/Home.vue";
 import Counter from "../components/Counter.vue";
-import Modal from "../components/modal/v-modal.vue";
+import ModalConsumer from "../components/modal/v-modal-consumer.vue";
 import Tabs from "../components/tabs/v-tabs.vue";
 import Accordion from "../components/accordion/v-accordion.vue";
 const router = createRouter({
@@ -21,7 +21,7 @@ const router = createRouter({
     },
     {
       path: "/modal",
-      component: Modal,
+      component: ModalConsumer,
     },
     {
       path: "/accordion",
