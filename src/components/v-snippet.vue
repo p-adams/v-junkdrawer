@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { marked } from "marked";
-// component that receives code snippet string as props
 const props = defineProps<{ snippet: string }>();
 const markedSnippet = marked(props.snippet);
 </script>

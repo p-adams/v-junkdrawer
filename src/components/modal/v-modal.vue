@@ -3,10 +3,19 @@ defineProps<{ mask: boolean; isOpen: boolean }>();
 </script>
 
 <template>
-  <div :class="['modal', { isOpen, mask }]">
-    <div class="modal-container">
-      <div class="dismiss" @click="$emit('close-modal')">&times;</div>
-      <h3>modal content</h3>
+  <div :class="['modal', { isOpen, mask }]" @click="$emit('close-modal')">
+    <div class="modal-container" @click.stop>
+      <div class="dismiss">
+        <div class="icon" @click="$emit('close-modal')">&times;</div>
+      </div>
+      <div class="modal-content">
+        <h3>modal content</h3>
+      </div>
+      <div class="modal-actions">
+        <div class="actions-group">
+          <slot name="actions" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +33,7 @@ defineProps<{ mask: boolean; isOpen: boolean }>();
   &.isOpen {
     display: block;
     &.mask {
-      background-color: black;
+      background-color: slategray;
       opacity: 0.8;
     }
     .modal-container {
@@ -37,7 +46,13 @@ defineProps<{ mask: boolean; isOpen: boolean }>();
       .dismiss {
         display: grid;
         place-items: end;
+      }
+      .icon {
         cursor: pointer;
+      }
+      .modal-actions {
+        display: grid;
+        place-items: end;
       }
     }
   }
