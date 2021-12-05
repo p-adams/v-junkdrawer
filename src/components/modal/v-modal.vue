@@ -9,7 +9,7 @@ defineProps<{ mask: boolean; isOpen: boolean }>();
         <div class="icon" @click="$emit('close-modal')">&times;</div>
       </div>
       <div class="modal-content">
-        <h3>modal content</h3>
+        <slot />
       </div>
       <div class="modal-actions">
         <div class="actions-group">
