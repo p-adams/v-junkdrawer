@@ -33,8 +33,7 @@ defineProps<{ mask: boolean; isOpen: boolean }>();
   &.isOpen {
     display: block;
     &.mask {
-      background-color: slategray;
-      opacity: 0.8;
+      background-color: rgba(189, 195, 199, 0.8);
     }
     .modal-container {
       display: flex;
@@ -42,7 +41,7 @@ defineProps<{ mask: boolean; isOpen: boolean }>();
       padding: 10px;
       background-color: white;
       margin: 15% auto;
-      width: 75%;
+
       .dismiss {
         display: grid;
         place-items: end;
