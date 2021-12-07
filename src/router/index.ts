@@ -3,7 +3,7 @@ import Home from "../components/Home.vue";
 import Counter from "../components/Counter.vue";
 import ModalConsumer from "../components/modal/v-modal-consumer.vue";
 import Tabs from "../components/tabs/v-tabs.vue";
-import Accordion from "../components/accordion/v-accordion.vue";
+import AccordionConsumer from "../components/accordion/v-accordion-consumer.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -25,7 +25,7 @@ const router = createRouter({
     },
     {
       path: "/accordion",
-      component: Accordion,
+      component: AccordionConsumer,
     },
   ],
 });

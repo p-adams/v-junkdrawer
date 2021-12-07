@@ -9,7 +9,11 @@ function confirm() {
 </script>
 <template>
   <button @click="isModalOpen = !isModalOpen">Open Modal</button>
-  <VModal :isOpen="isModalOpen" :mask="true" @close-modal="isModalOpen = false">
+  <v-modal
+    :isOpen="isModalOpen"
+    :mask="true"
+    @close-modal="isModalOpen = false"
+  >
     <template v-slot>
       <h3>modal content</h3>
     </template>
@@ -17,7 +21,7 @@ function confirm() {
       <button @click="isModalOpen = false">Cancel</button>
       <button @click="confirm()">Confirm</button>
     </template>
-  </VModal>
+  </v-modal>
 </template>
 <style lang="scss">
 .modal {
