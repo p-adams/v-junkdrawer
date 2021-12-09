@@ -10,7 +10,9 @@ defineProps<{ header: string }>();
       <h3>{{ header }}</h3>
       <span :class="['expand-content-icon', { expand }]" />
     </div>
-    <div v-if="expand" class="content-container">content</div>
+    <div v-if="expand" class="content-container">
+      <slot>default content</slot>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
