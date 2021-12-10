@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import VTabs from "./v-tabs.vue";
+import VTabs from "./v-tabs";
 </script>
 <template>
   <h3>Tabs Consumer</h3>
