@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import VTabs from "./v-tabs";
-const tabs = ["Home", "About", "Contact"];
+import VTabs from "./v-tabs.vue";
 </script>
 <template>
   <h3>Tabs Consumer</h3>
@@ -12,7 +11,6 @@ const tabs = ["Home", "About", "Contact"];
 </template>
 <style lang="scss" scoped>
 .v-tabs-container {
-  outline: 1px solid red;
   margin-top: 20px;
 }
 </style>
