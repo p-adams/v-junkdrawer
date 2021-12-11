@@ -1,24 +1,32 @@
-import { defineComponent, ref, useSlots } from "vue";
+import { defineComponent, useSlots, ref } from "vue";
 
 export default defineComponent({
-  render() {
+  setup() {
     const slots = useSlots();
-    const $s = slots.default! && slots.default();
-    const activeTab = ref($s[0].props?.label);
-    console.log(activeTab);
-    return (
-      <div>
-        <ul>
-          {$s.map((d) => {
-            return <li>{d.props?.label}</li>;
-          })}
-        </ul>
-        <div>
-          {$s.map((el) => {
-            return <div>{el.children}</div>;
-          })}
+    const $slots = slots.default! && slots.default();
+    let activeTab = ref($slots[0].props?.label);
+    return () => {
+      return (
+        <div class="v-tabs-container">
+          <ul>
+            {$slots.map((slot) => (
+              <li
+                class={slot.props?.label === activeTab.value ? "active" : ""}
+                onClick={() => (activeTab.value = slot.props?.label)}
+              >
+                {slot.props?.label}
+              </li>
+            ))}
+          </ul>
+          <div class="v-tabs-content">
+            {$slots.map((slot) => (
+              <div>
+                {slot.props?.label === activeTab.value ? slot.children : null}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    );
+      );
+    };
   },
 });

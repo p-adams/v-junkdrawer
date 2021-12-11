@@ -3,3 +3,21 @@ body {
   height: 100%;
   margin: 0;
 }
+
+.v-tabs-container {
+  width: 500px;
+  ul {
+    list-style: none;
+    display: flex;
+    li {
+      cursor: pointer;
+      margin-right: 10px;
+      &.active {
+        color: blue;
+      }
+    }
+  }
+  .v-tabs-content {
+    margin-top: 10px;
+  }
+}
