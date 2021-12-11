@@ -5,24 +5,23 @@ export default defineComponent({
     const slots = useSlots();
     const $slots = slots.default! && slots.default();
     let activeTab = ref($slots[0].props?.label);
+    const tabMatch = (slotLabel: string) => slotLabel === activeTab.value;
     return () => {
       return (
         <div class="v-tabs-container">
           <ul>
-            {$slots.map((slot) => (
+            {$slots.map(({ props }) => (
               <li
-                class={slot.props?.label === activeTab.value ? "active" : ""}
-                onClick={() => (activeTab.value = slot.props?.label)}
+                class={tabMatch(props?.label) ? "active" : ""}
+                onClick={() => (activeTab.value = props?.label)}
               >
-                {slot.props?.label}
+                {props?.label}
               </li>
             ))}
           </ul>
           <div class="v-tabs-content">
-            {$slots.map((slot) => (
-              <div>
-                {slot.props?.label === activeTab.value ? slot.children : null}
-              </div>
+            {$slots.map(({ children, props }) => (
+              <div>{tabMatch(props?.label) ? children : null}</div>
             ))}
           </div>
         </div>
