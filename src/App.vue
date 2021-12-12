@@ -7,6 +7,7 @@
       <router-link to="/tabs">Tabs</router-link>
       <router-link to="/modal">Modal</router-link>
       <router-link to="/accordion">Accordion</router-link>
+      <router-link to="/rate-limit-button">Rate Limit Button</router-link>
     </div>
     <main>
       <router-view />
@@ -35,10 +36,11 @@
   .sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
     align-items: center;
     background-color: lightgray;
     a {
+      margin-top: 20px;
       margin-bottom: 33px;
       &.router-link-active {
         &.router-link-exact-active {
@@ -52,6 +54,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 18px;
   }
 }
 </style>
