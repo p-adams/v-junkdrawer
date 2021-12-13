@@ -10,7 +10,7 @@ interface Post {
 const posts = ref<Post[]>();
 const error = ref<Error>();
 
-function onRequest() {
+function onLoadMore() {
   fetch("https://jsonplaceholder.typicode.com/posts?_start=0&_limit=5")
     .then((response) => response.json())
     .then((json: Post[]) => {
@@ -24,7 +24,7 @@ function onRequest() {
 <template>
   <div class="v-rate-limit-button-consumer-container">
     <h3>Rate Limit Button Consumer</h3>
-    <v-rate-limit-button title="Load More" @send-request="onRequest" />
+    <v-rate-limit-button title="Load More" @send-request="onLoadMore" />
     <ul>
       <li class="post-card" v-for="post in posts">
         <h4>{{ post.title }}</h4>
