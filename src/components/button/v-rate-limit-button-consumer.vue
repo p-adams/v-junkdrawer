@@ -10,12 +10,12 @@ interface Post {
 const posts = ref<Post[]>();
 const error = ref<Error>();
 const start = ref<number>(0);
-const limit = ref<number>(5);
-const end = 99;
+const LIMIT = 5;
+const END = 99;
 
 function onLoadMore() {
   fetch(
-    `https://jsonplaceholder.typicode.com/posts?_start=${start.value}&_limit=${limit.value}`
+    `https://jsonplaceholder.typicode.com/posts?_start=${start.value}&_limit=${LIMIT}`
   )
     .then((response) => response.json())
     .then((json: Post[]) => {
