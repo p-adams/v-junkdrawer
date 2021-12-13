@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{ title: string }>();
+</script>
 <template>
-  <button>rate limited button</button>
+  <button @click="$emit('send-request')">{{ title }}</button>
 </template>
 <style></style>

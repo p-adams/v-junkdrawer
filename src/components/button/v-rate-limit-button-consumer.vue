@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import VRateLimitButton from "./v-rate-limit-button.vue";
 interface Post {
   userId: number;
@@ -9,9 +9,9 @@ interface Post {
 }
 const posts = ref<Post[]>();
 const error = ref<Error>();
-onMounted(() => {
-  // TODO: swap out jsonplaceholder for local dev server
-  fetch("https://jsonplaceholder.typicode.com/posts")
+
+function onRequest() {
+  fetch("https://jsonplaceholder.typicode.com/posts?_start=0&_limit=5")
     .then((response) => response.json())
     .then((json: Post[]) => {
       posts.value = json;
@@ -19,14 +19,12 @@ onMounted(() => {
     .catch((err) => {
       error.value = err;
     });
-});
+}
 </script>
 <template>
   <div class="v-rate-limit-button-consumer-container">
     <h3>Rate Limit Button Consumer</h3>
-
-    <v-rate-limit-button title="Request Posts" />
-
+    <v-rate-limit-button title="Load More" @send-request="onRequest" />
     <ul>
       <li class="post-card" v-for="post in posts">
         <h4>{{ post.title }}</h4>
@@ -54,6 +52,7 @@ onMounted(() => {
   button {
     position: sticky;
     top: 0;
+    width: 100%;
   }
 }
 </style>
