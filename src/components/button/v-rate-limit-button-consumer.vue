@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import VRateLimitButton from "./v-rate-limit-button.vue";
+
 interface Post {
   userId: number;
   id: number;
@@ -10,6 +11,7 @@ interface Post {
 const posts = ref<Post[]>([]);
 const error = ref<Error>();
 const start = ref<number>(0);
+
 const LIMIT = 5;
 const END = 100;
 const currentStart = computed(() => {
@@ -40,6 +42,8 @@ function loadPosts() {
     <v-rate-limit-button
       title="Load More"
       @send-request="loadPosts"
+      :bucket-size="5"
+      :timeout="5000"
       :disabled="currentStart === END"
     />
     <ul>
