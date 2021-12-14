@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import VRateLimitButton from "./v-rate-limit-button.vue";
 interface Post {
   userId: number;
@@ -7,32 +7,45 @@ interface Post {
   title: string;
   body: string;
 }
-const posts = ref<Post[]>();
+const posts = ref<Post[]>([]);
 const error = ref<Error>();
 const start = ref<number>(0);
 const LIMIT = 5;
-const END = 99;
+const END = 100;
+const currentStart = computed(() => {
+  return start.value * LIMIT;
+});
 
-function onLoadMore() {
-  fetch(
-    `https://jsonplaceholder.typicode.com/posts?_start=${start.value}&_limit=${LIMIT}`
-  )
-    .then((response) => response.json())
-    .then((json: Post[]) => {
-      posts.value = json;
-    })
-    .catch((err) => {
-      error.value = err;
-    });
+onMounted(() => loadPosts());
+
+function loadPosts() {
+  if (currentStart.value <= END) {
+    fetch(
+      `https://jsonplaceholder.typicode.com/posts?_start=${currentStart.value}&_limit=${LIMIT}`
+    )
+      .then((response) => response.json())
+      .then((json: Post[]) => {
+        posts.value.push(...json);
+        start.value++;
+      })
+      .catch((err) => {
+        error.value = err;
+      });
+  }
 }
 </script>
 <template>
   <div class="v-rate-limit-button-consumer-container">
     <h3>Rate Limit Button Consumer</h3>
-    <v-rate-limit-button title="Load More" @send-request="onLoadMore" />
+    <v-rate-limit-button
+      title="Load More"
+      @send-request="loadPosts"
+      :disabled="currentStart === END"
+    />
     <ul>
       <li class="post-card" v-for="post in posts">
         <h4>{{ post.title }}</h4>
+        <span>ID: {{ post.id }}</span>
         <p>{{ post.body }}</p>
       </li>
     </ul>
