@@ -3,10 +3,14 @@ import VLoader from "./v-loader.vue";
 </script>
 <template>
   <div class="v-loader-consumer-wrapper">
-    <v-loader />
+    <div class="loader-container">
+      <div>Small<v-loader size="sm" /></div>
+      <div>Medium<v-loader size="md" /></div>
+      <div>Large<v-loader size="lg" /></div>
+    </div>
   </div>
 </template>
-<style>
+<style lang="scss" scoped>
 .v-loader-consumer-wrapper {
   height: 100%;
   margin: 0 auto;
@@ -14,5 +18,9 @@ import VLoader from "./v-loader.vue";
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  .loader-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 </style>
