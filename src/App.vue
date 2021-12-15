@@ -8,6 +8,7 @@
       <router-link to="/modal">Modal</router-link>
       <router-link to="/accordion">Accordion</router-link>
       <router-link to="/rate-limit-button">Rate Limit Button</router-link>
+      <router-link to="/v-loader">Loader</router-link>
     </div>
     <main>
       <router-view />
