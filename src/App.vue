@@ -9,6 +9,7 @@
       <router-link to="/accordion">Accordion</router-link>
       <router-link to="/rate-limit-button">Rate Limit Button</router-link>
       <router-link to="/v-loader">Loader</router-link>
+      <router-link to="/v-commerce">Commerce</router-link>
     </div>
     <main>
       <router-view />

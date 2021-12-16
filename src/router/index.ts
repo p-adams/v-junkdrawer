@@ -6,6 +6,7 @@ import TabsConsumer from "../components/tabs/v-tabs-consumer.vue";
 import AccordionConsumer from "../components/accordion/v-accordion-consumer.vue";
 import RateLimitButtonConsumer from "../components/button/v-rate-limit-button-consumer.vue";
 import VLoaderConsumer from "../components/v-loader/v-loader-consumer.vue";
+import VCommerceHome from "../components/v-commerce/v-commerce-home.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -36,6 +37,10 @@ const router = createRouter({
     {
       path: "/v-loader",
       component: VLoaderConsumer,
+    },
+    {
+      path: "/v-commerce",
+      component: VCommerceHome,
     },
   ],
 });
