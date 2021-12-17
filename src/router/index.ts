@@ -9,6 +9,7 @@ import VLoaderConsumer from "../components/v-loader/v-loader-consumer.vue";
 import VCommerceHome from "../components/commerce/commerce-home.vue";
 import VProductListConsumer from "../components/commerce/v-product-list-consumer.vue";
 import VOrderSummaryConsumer from "../components/commerce/v-order-summary-consumer.vue";
+import VStorefront from "../components/commerce/v-storefront.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -52,6 +53,11 @@ const router = createRouter({
       component: VCommerceHome,
       name: "Commerce",
       children: [
+        {
+          path: "storefront",
+          component: VStorefront,
+          name: "Storefront",
+        },
         {
           path: "product-list",
           component: VProductListConsumer,
