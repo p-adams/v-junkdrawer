@@ -2,18 +2,36 @@
 <template>
   <div class="app-container">
     <div class="sidebar">
-      <router-link to="/">Home</router-link>
-      <router-link to="/counter">Counter</router-link>
-      <router-link to="/tabs">Tabs</router-link>
-      <router-link to="/modal">Modal</router-link>
-      <router-link to="/accordion">Accordion</router-link>
-      <router-link to="/rate-limit-button">Rate Limit Button</router-link>
-      <router-link to="/v-loader">Loader</router-link>
-
-      <router-link to="/v-commerce">Commerce</router-link>
-
-      <router-link to="/v-commerce/product-list">Product List</router-link>
-      <router-link to="/v-commerce/order-summary">Order Summary</router-link>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li>
+          <router-link to="/counter">Counter</router-link>
+        </li>
+        <li><router-link to="/tabs">Tabs</router-link></li>
+        <li><router-link to="/modal">Modal</router-link></li>
+        <li><router-link to="/accordion">Accordion</router-link></li>
+        <li>
+          <router-link to="/rate-limit-button">Rate Limit Button</router-link>
+        </li>
+        <li><router-link to="/v-loader">Loader</router-link></li>
+        <li>
+          <router-link to="/v-commerce">
+            <span>Commerce</span>
+          </router-link>
+          <ul class="sub-list">
+            <li>
+              <router-link to="/v-commerce/product-list"
+                >Product List</router-link
+              >
+            </li>
+            <li>
+              <router-link to="/v-commerce/order-summary"
+                >Order Summary</router-link
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
     <main>
       <router-view />
@@ -33,6 +51,9 @@
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+ul {
+  list-style: none;
+}
 .app-container {
   display: grid;
   grid-template-columns: 200px auto;
@@ -45,12 +66,14 @@
 
     align-items: center;
     background-color: lightgray;
-    a {
+    li {
       margin-top: 20px;
       margin-bottom: 33px;
-      &.router-link-active {
-        &.router-link-exact-active {
-          color: blue;
+      a {
+        &.router-link-active {
+          &.router-link-exact-active {
+            color: blue;
+          }
         }
       }
     }
