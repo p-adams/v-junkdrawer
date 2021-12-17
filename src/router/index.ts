@@ -15,37 +15,53 @@ const router = createRouter({
     {
       path: "/",
       component: Home,
+      name: "Home",
     },
     {
       path: "/counter",
       component: Counter,
+      name: "Counter",
     },
     {
       path: "/tabs",
       component: TabsConsumer,
+      name: "Tabs",
     },
     {
       path: "/modal",
       component: ModalConsumer,
+      name: "Modal",
     },
     {
       path: "/accordion",
       component: AccordionConsumer,
+      name: "Accordion",
     },
     {
       path: "/rate-limit-button",
       component: RateLimitButtonConsumer,
+      name: "Rate Limit Button",
     },
     {
       path: "/v-loader",
       component: VLoaderConsumer,
+      name: "Loader",
     },
     {
       path: "/v-commerce",
       component: VCommerceHome,
+      name: "Commerce",
       children: [
-        { path: "product-list", component: VProductListConsumer },
-        { path: "order-summary", component: VOrderSummaryConsumer },
+        {
+          path: "product-list",
+          component: VProductListConsumer,
+          name: "Product List",
+        },
+        {
+          path: "order-summary",
+          component: VOrderSummaryConsumer,
+          name: "Order Summary",
+        },
       ],
     },
   ],

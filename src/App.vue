@@ -1,33 +1,37 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const sortedRoutes = computed(() => {
+  return router.getRoutes().sort((a, b) => {
+    const path = a.path.toUpperCase();
+    const nextPath = b.path.toUpperCase();
+    if (path < nextPath) {
+      return -1;
+    }
+    if (path > nextPath) {
+      return 1;
+    }
+
+    return 0;
+  });
+});
+
+const routes = (route: any) => {
+  return route.path.split("/");
+};
+</script>
 <template>
   <div class="app-container">
     <div class="sidebar">
       <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li>
-          <router-link to="/counter">Counter</router-link>
-        </li>
-        <li><router-link to="/tabs">Tabs</router-link></li>
-        <li><router-link to="/modal">Modal</router-link></li>
-        <li><router-link to="/accordion">Accordion</router-link></li>
-        <li>
-          <router-link to="/rate-limit-button">Rate Limit Button</router-link>
-        </li>
-        <li><router-link to="/v-loader">Loader</router-link></li>
-        <li>
-          <router-link to="/v-commerce">
-            <span>Commerce</span>
-          </router-link>
-          <ul class="sub-list">
+        <li v-for="route in sortedRoutes">
+          <router-link v-if="routes(route).length === 2" :to="route.path">{{
+            route.name
+          }}</router-link>
+          <ul v-else class="sublist">
             <li>
-              <router-link to="/v-commerce/product-list"
-                >Product List</router-link
-              >
-            </li>
-            <li>
-              <router-link to="/v-commerce/order-summary"
-                >Order Summary</router-link
-              >
+              <router-link :to="route.path"> {{ route.name }}</router-link>
             </li>
           </ul>
         </li>
