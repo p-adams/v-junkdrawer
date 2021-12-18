@@ -5,13 +5,13 @@ const { sortedRoutes, routes } = useRouteUtils();
 <template>
   <div class="app-container">
     <div class="sidebar">
-      <ul>
-        <li v-for="route in sortedRoutes()">
+      <ul class="category-list">
+        <li class="category-item" v-for="route in sortedRoutes()">
           <router-link v-if="routes(route).length === 2" :to="route.path">{{
             route.name
           }}</router-link>
-          <ul v-else class="sublist">
-            <li>
+          <ul v-else class="sub-category-list">
+            <li class="sub-category-item">
               <router-link :to="route.path"> {{ route.name }}</router-link>
             </li>
           </ul>
@@ -51,7 +51,7 @@ ul {
 
     align-items: center;
     background-color: lightgray;
-    li {
+    .category-item {
       margin-top: 20px;
       margin-bottom: 33px;
       a {
@@ -61,9 +61,10 @@ ul {
           }
         }
       }
-      .sublist {
+      .sub-category-list {
         li {
           a {
+            font-size: 14px;
             margin-left: 12px;
           }
         }
