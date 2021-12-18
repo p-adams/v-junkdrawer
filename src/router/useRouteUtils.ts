@@ -1,32 +1,36 @@
-import { useRouter } from "vue-router";
+import { useRouter, RouteRecordNormalized } from "vue-router";
+import { onMounted, ref } from "vue";
 function useRouteUtils() {
   const router = useRouter();
   const routes = router.getRoutes();
+  const expandableCategories = ref(new Map<string, boolean>());
 
+  onMounted(() => {
+    for (const mainCategory of mainCategories()) {
+      expandableCategories.value.set(mainCategory.path, false);
+    }
+  });
   const getChildren = () => {
     return routes.find((route) => route.children.length)?.children;
   };
 
+  const getExpandableCategory = (route: RouteRecordNormalized) => {
+    return expandableCategories.value.get(route.path);
+  };
+
+  const toggleCategoryExpanded = (route: RouteRecordNormalized) => {
+    expandableCategories.value.set(route.path, !getExpandableCategory(route));
+  };
+
   const mainCategories = () => {
     return routes.filter((route) => {
-      const matchingChild = getChildren()?.find(
-        (child) => child.name === route.name
-      );
-
-      return !!!matchingChild;
+      return !!!getChildren()?.find((child) => child.name === route.name);
     });
   };
 
-  // to enable expand sub-categories
-
-  const mapRoutesToCategories = () => {
-    const categories = new Map<string, { isExpanded: boolean }>();
-    for (const route of router.getRoutes()) {
-    }
-  };
-
   return {
-    mapRoutesToCategories,
+    getExpandableCategory,
+    toggleCategoryExpanded,
     mainCategories,
   };
 }

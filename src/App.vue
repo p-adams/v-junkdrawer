@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import useRouteUtils from "./router/useRouteUtils";
-const { mainCategories, mapRoutesToCategories } = useRouteUtils();
+const { mainCategories, toggleCategoryExpanded, getExpandableCategory } =
+  useRouteUtils();
 </script>
 <template>
   <div class="app-container">
@@ -9,11 +10,21 @@ const { mainCategories, mapRoutesToCategories } = useRouteUtils();
         <li class="category-item" v-for="route in mainCategories()">
           <div>
             <router-link :to="route.path">{{ route.name }}</router-link>
-            <span v-if="route.children.length" class="expand"></span>
+            <span
+              v-if="route.children.length"
+              :class="[
+                'expand',
+                [getExpandableCategory(route) ? 'active' : 'inactive'],
+              ]"
+              @click="toggleCategoryExpanded(route)"
+            ></span>
           </div>
-          <ul v-if="route.children.length" class="sub-category-list">
+          <ul
+            v-if="route.children.length && getExpandableCategory(route)"
+            class="sub-category-list"
+          >
             <li class="sub-category-item" v-for="child in route.children">
-              <router-link :to="route.path + '/' + child.path">{{
+              <router-link :to="`${route.path}/${child.path}`">{{
                 child.name
               }}</router-link>
             </li>
@@ -66,8 +77,20 @@ ul {
       }
 
       .expand {
-        &::after {
-          content: "⌄";
+        margin-left: 10px;
+        font-size: 20px;
+        &.active {
+          &::after {
+            content: "⌄";
+          }
+        }
+
+        &.inactive {
+          &::after {
+            display: inline-block;
+            content: "⌄";
+            transform: rotate(270deg);
+          }
         }
       }
       .sub-category-list {
