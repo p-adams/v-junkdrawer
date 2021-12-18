@@ -49,6 +49,7 @@ const { mainCategories, toggleCategoryExpanded, getExpandableCategory } =
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  height: 100vh;
 }
 ul {
   list-style: none;
@@ -56,13 +57,13 @@ ul {
 .app-container {
   display: grid;
   grid-template-columns: 200px auto;
-  padding: 10px;
-  height: 100vh;
-  margin-top: 47px;
+
+  height: 100%;
+
   .sidebar {
     display: flex;
     flex-direction: column;
-
+    height: 100vh;
     align-items: center;
     background-color: lightgray;
     .category-item {
@@ -79,9 +80,14 @@ ul {
       .expand {
         margin-left: 10px;
         font-size: 20px;
+        cursor: pointer;
+        &::after {
+          vertical-align: middle;
+        }
         &.active {
           &::after {
             content: "⌄";
+            color: blue;
           }
         }
 
@@ -96,9 +102,11 @@ ul {
       .sub-category-list {
         margin-top: 10px;
         li {
+          margin-bottom: 10px;
           a {
             font-size: 14px;
             margin-left: 12px;
+
             &.router-link-active {
               &.router-link-exact-active {
                 color: blue;
