@@ -1,28 +1,33 @@
 import { useRouter } from "vue-router";
 function useRouteUtils() {
   const router = useRouter();
-  const sortedRoutes = () => {
-    return router.getRoutes().sort((a, b) => {
-      const path = a.path.toUpperCase();
-      const nextPath = b.path.toUpperCase();
-      if (path < nextPath) {
-        return -1;
-      }
-      if (path > nextPath) {
-        return 1;
-      }
+  const routes = router.getRoutes();
 
-      return 0;
+  const getChildren = () => {
+    return routes.find((route) => route.children.length)?.children;
+  };
+
+  const mainCategories = () => {
+    return routes.filter((route) => {
+      const matchingChild = getChildren()?.find(
+        (child) => child.name === route.name
+      );
+
+      return !!!matchingChild;
     });
   };
 
-  const routes = (route: any) => {
-    return route.path.split("/");
+  // to enable expand sub-categories
+
+  const mapRoutesToCategories = () => {
+    const categories = new Map<string, { isExpanded: boolean }>();
+    for (const route of router.getRoutes()) {
+    }
   };
 
   return {
-    routes,
-    sortedRoutes,
+    mapRoutesToCategories,
+    mainCategories,
   };
 }
 

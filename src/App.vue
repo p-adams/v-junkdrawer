@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import useRouteUtils from "./router/useRouteUtils";
-const { sortedRoutes, routes } = useRouteUtils();
+const { mainCategories, mapRoutesToCategories } = useRouteUtils();
 </script>
 <template>
   <div class="app-container">
     <div class="sidebar">
       <ul class="category-list">
-        <li class="category-item" v-for="route in sortedRoutes()">
-          <router-link v-if="routes(route).length === 2" :to="route.path">{{
-            route.name
-          }}</router-link>
-          <ul v-else class="sub-category-list">
-            <li class="sub-category-item">
-              <router-link :to="route.path"> {{ route.name }}</router-link>
+        <li class="category-item" v-for="route in mainCategories()">
+          <div>
+            <router-link :to="route.path">{{ route.name }}</router-link>
+            <span v-if="route.children.length" class="expand"></span>
+          </div>
+          <ul v-if="route.children.length" class="sub-category-list">
+            <li class="sub-category-item" v-for="child in route.children">
+              <router-link :to="route.path + '/' + child.path">{{
+                child.name
+              }}</router-link>
             </li>
           </ul>
         </li>
@@ -61,11 +64,23 @@ ul {
           }
         }
       }
+
+      .expand {
+        &::after {
+          content: "⌄";
+        }
+      }
       .sub-category-list {
+        margin-top: 10px;
         li {
           a {
             font-size: 14px;
             margin-left: 12px;
+            &.router-link-active {
+              &.router-link-exact-active {
+                color: blue;
+              }
+            }
           }
         }
       }
