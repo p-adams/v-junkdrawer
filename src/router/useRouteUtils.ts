@@ -10,9 +10,6 @@ function useRouteUtils() {
       expandableCategories.value.set(mainCategory.path, false);
     }
   });
-  const getChildren = () => {
-    return routes.find((route) => route.children.length)?.children;
-  };
 
   const getExpandableCategory = (route: RouteRecordNormalized) => {
     return expandableCategories.value.get(route.path);
@@ -24,7 +21,7 @@ function useRouteUtils() {
 
   const mainCategories = () => {
     return routes.filter((route) => {
-      return !!!getChildren()?.find((child) => child.name === route.name);
+      return route.path.split("/").length === 2;
     });
   };
 

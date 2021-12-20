@@ -10,6 +10,8 @@ import VCommerceHome from "../components/commerce/commerce-home.vue";
 import VProductListConsumer from "../components/commerce/v-product-list-consumer.vue";
 import VOrderSummaryConsumer from "../components/commerce/v-order-summary-consumer.vue";
 import VStorefront from "../components/commerce/v-storefront.vue";
+import ButtonHome from "../components/button/button-home.vue";
+import ActionButton from "../components/button/v-action-button.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -39,9 +41,21 @@ const router = createRouter({
       name: "Accordion",
     },
     {
-      path: "/rate-limit-button",
-      component: RateLimitButtonConsumer,
-      name: "Rate Limit Button",
+      path: "/button",
+      component: ButtonHome,
+      name: "Button",
+      children: [
+        {
+          path: "rate-limit-button",
+          component: RateLimitButtonConsumer,
+          name: "Rate Limit Button",
+        },
+        {
+          path: "action-button",
+          component: ActionButton,
+          name: "Action Button",
+        },
+      ],
     },
     {
       path: "/v-loader",
