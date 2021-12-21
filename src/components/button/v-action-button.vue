@@ -5,7 +5,7 @@ const expand = ref(false);
 <template>
   <div class="action-button">
     <div class="wrapper" @click="expand = !expand">
-      <span class="label">Actions</span>
+      <button class="label">Actions</button>
       <ul v-if="expand">
         <li>create</li>
         <li>read</li>
@@ -23,10 +23,12 @@ const expand = ref(false);
     border: 1px solid lightgrey;
     border-radius: 4px;
     cursor: pointer;
-    background-color: #2196f3;
+
     .label {
+      border: none;
       text-transform: uppercase;
       color: white;
+      background-color: #2196f3;
       font-weight: 700;
       padding: 10px;
       &::after {
@@ -38,7 +40,7 @@ const expand = ref(false);
     ul {
       padding: 10px;
       text-align: right;
-      background-color: white;
+
       li {
         margin-bottom: 10px;
         &:hover {
