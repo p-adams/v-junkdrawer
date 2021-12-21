@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import { ref } from "vue";
 const expand = ref(false);
+defineProps<{ actions?: Array<Action> }>();
 </script>
 <template>
   <div class="action-button">
     <div class="wrapper" @click="expand = !expand">
       <button class="label">Actions</button>
-      <ul v-if="expand">
-        <li>create</li>
-        <li>read</li>
-        <li>update</li>
-        <li>delete</li>
-      </ul>
+      <div v-if="expand">
+        <ul>
+          <li>create</li>
+          <li>read</li>
+          <li>update</li>
+          <li>delete</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
