@@ -5,8 +5,13 @@ defineProps<{ actions?: Array<Action> }>();
 </script>
 <template>
   <div class="action-button">
-    <div class="wrapper" @click="expand = !expand">
-      <button class="label">Actions</button>
+    <div class="wrapper">
+      <button
+        :class="['label', { expanded: expand }]"
+        @click.prevent="expand = !expand"
+      >
+        Actions
+      </button>
       <div v-if="expand">
         <slot name="action-list" />
       </div>
@@ -29,6 +34,13 @@ defineProps<{ actions?: Array<Action> }>();
       background-color: #2196f3;
       font-weight: 700;
       padding: 10px;
+      &.expanded {
+        &::after {
+          content: ">";
+          display: inline-block;
+          transform: rotate(90deg);
+        }
+      }
       &::after {
         content: ">";
         margin-left: 10px;
