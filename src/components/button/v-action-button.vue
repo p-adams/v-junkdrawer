@@ -17,7 +17,7 @@ const expand = ref(false);
     </div>
   </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .action-button {
   .wrapper {
     display: inline-flex;

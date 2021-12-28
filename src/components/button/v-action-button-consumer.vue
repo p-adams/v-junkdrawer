@@ -22,7 +22,7 @@ function handleActionClick(actionKey: string) {
     ></v-action-button
   >
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 ul {
   padding: 10px;
   text-align: right;
