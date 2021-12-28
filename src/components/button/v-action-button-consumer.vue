@@ -1,18 +1,25 @@
 <script setup lang="ts">
 import VActionButton from "./v-action-button.vue";
-const create = () => console.log("create");
-const read = () => console.log("read");
-const update = () => console.log("update");
-const ddelete = () => console.log("delete");
+const actionMap: any = {
+  create: () => console.log("create"),
+  read: () => console.log("read"),
+  update: () => console.log("update"),
+  ddelete: () => console.log("delete"),
+};
+function handleActionClick(actionKey: string) {
+  return () => {
+    return { fn: actionMap[actionKey] };
+  };
+}
 </script>
 <template>
   <v-action-button
     ><template #action-list>
       <ul>
-        <li @click="create">create</li>
-        <li @click="read">read</li>
-        <li @click="update">update</li>
-        <li @click="ddelete">delete</li>
+        <li @click="handleActionClick('create')().fn()">create</li>
+        <li @click="handleActionClick('read')().fn()">read</li>
+        <li @click="handleActionClick('update')().fn()">update</li>
+        <li @click="handleActionClick('ddelete')().fn()">delete</li>
       </ul></template
     ></v-action-button
   >

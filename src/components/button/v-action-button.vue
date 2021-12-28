@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 const expand = ref(false);
-defineProps<{ actions?: Array<Action> }>();
 </script>
 <template>
   <div class="action-button">
@@ -12,7 +11,7 @@ defineProps<{ actions?: Array<Action> }>();
       >
         Actions
       </button>
-      <div v-if="expand">
+      <div v-if="expand" @click="expand = !expand">
         <slot name="action-list" />
       </div>
     </div>
