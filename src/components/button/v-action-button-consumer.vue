@@ -7,19 +7,17 @@ const actionMap: any = {
   ddelete: () => console.log("delete"),
 };
 function handleActionClick(actionKey: string) {
-  return () => {
-    return { fn: actionMap[actionKey] };
-  };
+  return () => actionMap[actionKey]();
 }
 </script>
 <template>
   <v-action-button
     ><template #action-list>
       <ul>
-        <li @click="handleActionClick('create')().fn()">create</li>
-        <li @click="handleActionClick('read')().fn()">read</li>
-        <li @click="handleActionClick('update')().fn()">update</li>
-        <li @click="handleActionClick('ddelete')().fn()">delete</li>
+        <li @click="handleActionClick('create')()">create</li>
+        <li @click="handleActionClick('read')()">read</li>
+        <li @click="handleActionClick('update')()">update</li>
+        <li @click="handleActionClick('ddelete')()">delete</li>
       </ul></template
     ></v-action-button
   >
