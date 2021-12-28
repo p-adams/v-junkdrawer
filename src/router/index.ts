@@ -11,7 +11,7 @@ import VProductListConsumer from "../components/commerce/v-product-list-consumer
 import VOrderSummaryConsumer from "../components/commerce/v-order-summary-consumer.vue";
 import VStorefront from "../components/commerce/v-storefront.vue";
 import ButtonHome from "../components/button/button-home.vue";
-import ActionButton from "../components/button/v-action-button.vue";
+import ActionButtonConsumer from "../components/button/v-action-button-consumer.vue";
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -52,7 +52,7 @@ const router = createRouter({
         },
         {
           path: "action-button",
-          component: ActionButton,
+          component: ActionButtonConsumer,
           name: "Action Button",
         },
       ],

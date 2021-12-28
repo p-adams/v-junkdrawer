@@ -8,12 +8,7 @@ defineProps<{ actions?: Array<Action> }>();
     <div class="wrapper" @click="expand = !expand">
       <button class="label">Actions</button>
       <div v-if="expand">
-        <ul>
-          <li>create</li>
-          <li>read</li>
-          <li>update</li>
-          <li>delete</li>
-        </ul>
+        <slot name="action-list" />
       </div>
     </div>
   </div>
