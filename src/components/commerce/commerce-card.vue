@@ -1,26 +1,12 @@
-<script lang="ts" setup>
-import { onMounted } from "vue";
-
-onMounted(() => {
-  console.log("foo");
-});
-</script>
+<script lang="ts" setup></script>
 <template>
   <div class="commerce-card">
     <div class="image-container"><slot name="image"> </slot></div>
     <div class="content-container">
-      <slot name="content">
-        <h3>Lorem ipsum dolor sit amet</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-      </slot>
+      <slot name="content"> </slot>
     </div>
     <div class="action-container">
-      <slot name="action">
-        <button>Add to Cart</button>
-      </slot>
+      <slot name="action"> </slot>
     </div>
   </div>
 </template>
@@ -36,6 +22,10 @@ onMounted(() => {
   }
   .content-container {
     margin: 6px 0 6px 0;
+  }
+  .action-container {
+    display: flex;
+    justify-content: center;
   }
 }
 </style>
