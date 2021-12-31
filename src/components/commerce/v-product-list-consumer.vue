@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-
-onMounted(() => console.log("mounted"));
+import VCommerceCard from "./commerce-card.vue";
 </script>
 <template>
-  <div>product list consumer</div>
+  <div>
+    <h3>product list consumer</h3>
+
+    <v-commerce-card> </v-commerce-card>
+  </div>
 </template>
 <style></style>
