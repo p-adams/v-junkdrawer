@@ -17,7 +17,7 @@
   border: 1px solid lightgray;
   padding: 6px;
   .image-container {
-    height: 65%;
+    height: 60%;
     &.background {
       animation: shimmer 2s infinite;
       background: linear-gradient(
@@ -39,7 +39,7 @@
   }
 
   .content-container {
-    margin: 6px 0 6px 0;
+    margin: 10px 0 10px 0;
   }
   .action-container {
     display: flex;
