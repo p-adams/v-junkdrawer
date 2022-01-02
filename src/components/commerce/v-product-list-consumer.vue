@@ -3,9 +3,8 @@ import VProductCard from "./v-product-card.vue";
 import { products } from "./mock_data";
 </script>
 <template>
-  <div>
+  <div class="product-list-consumer">
     <h3>product list consumer</h3>
-    <!-- TODO: layout so that product list is always entered -->
     <div class="product-list">
       <div v-for="product in products" :key="product.id">
         <v-product-card :product="product" />
@@ -14,9 +13,19 @@ import { products } from "./mock_data";
   </div>
 </template>
 <style lang="scss" scoped>
-.product-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+.product-list-consumer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  h3 {
+    margin-bottom: 10px;
+  }
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
 }
 </style>
