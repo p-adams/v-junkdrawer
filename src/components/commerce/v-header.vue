@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import VSearchInput from "./v-search-input.vue";
 defineProps<{ pageTitle: string }>();
 </script>
 <template>
@@ -6,7 +7,7 @@ defineProps<{ pageTitle: string }>();
     <div class="navbar">
       <div class="navbar-items">
         <span>{{ pageTitle }}</span>
-        <input />
+        <v-search-input />
         <div>Account</div>
         <div>cart</div>
       </div>

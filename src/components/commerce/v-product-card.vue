@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import VCommerceCard from "./commerce-card.vue";
+import VCard from "./v-card.vue";
 defineProps<{ product: Product }>();
 </script>
 <template>
-  <v-commerce-card>
+  <v-card>
     <template v-slot:content>
       <h3>{{ product.name }}</h3>
       <p>{{ product.description }}</p>
@@ -11,6 +11,6 @@ defineProps<{ product: Product }>();
     <template v-slot:action>
       <button>Add to Cart</button>
     </template>
-  </v-commerce-card>
+  </v-card>
 </template>
 <style lang="scss" scoped></style>
