@@ -14,31 +14,57 @@ defineProps<{ pageTitle: string }>();
     </div>
     <nav>
       <ul>
-        <li>Books</li>
-        <li>Computers</li>
-        <li>Shoes</li>
+        <li>
+          <router-link to="/books">Books</router-link>
+        </li>
+
+        <li><router-link to="/computers">Computers</router-link></li>
+        <li><router-link to="/computers">Gadgets</router-link></li>
       </ul>
     </nav>
   </header>
 </template>
 <style lang="scss" scoped>
+$navbarH: 70px;
 header {
   display: flex;
   flex-direction: column;
   .navbar {
+    height: $navbarH;
+    background-color: #818589;
     border-bottom: 1px solid lightgray;
-    margin: 10px 0 10px 0;
+    margin-top: 10px;
     .navbar-items {
       display: flex;
       justify-content: space-between;
       margin-bottom: 8px;
+      span,
+      div {
+        flex: 1;
+      }
+      .search-input {
+        flex: 2;
+      }
     }
   }
   nav {
+    background-color: #d3d3d3;
+    height: calc($navbarH / 2);
     ul {
+      height: 100%;
+
       list-style: none;
       display: flex;
       justify-content: space-evenly;
+      li {
+        padding: 2px;
+        a {
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          height: 100%;
+        }
+      }
     }
   }
 }

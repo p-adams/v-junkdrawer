@@ -11,6 +11,10 @@
 </template>
 <style lang="scss" scoped>
 .search-input {
+  display: flex;
   border: 1px solid lightgray;
+  input {
+    width: 100%;
+  }
 }
 </style>
