@@ -15,11 +15,17 @@ defineProps<{ pageTitle: string }>();
     <nav>
       <ul>
         <li>
-          <router-link to="/books">Books</router-link>
+          <router-link to="/v-commerce/storefront/books">Books</router-link>
         </li>
 
-        <li><router-link to="/computers">Computers</router-link></li>
-        <li><router-link to="/computers">Gadgets</router-link></li>
+        <li>
+          <router-link to="/v-commerce/storefront/computers"
+            >Computers</router-link
+          >
+        </li>
+        <li>
+          <router-link to="/v-commerce/storefront/gadgets">Gadgets</router-link>
+        </li>
       </ul>
     </nav>
   </header>
