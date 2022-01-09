@@ -1,13 +1,36 @@
 <script setup lang="ts">
 import VSearchInput from "../v-search-input.vue";
+// replica suggestions data
 defineProps<{ pageTitle: string }>();
+const __suggestions: Array<{ label: string; value: string }> = [
+  {
+    label: "apples",
+    value: "apples",
+  },
+  { label: "bananas", value: "bananas" },
+  {
+    label: "pears",
+    value: "pears",
+  },
+  {
+    label: "grapes",
+    value: "grapes",
+  },
+  {
+    label: "cherries",
+    value: "cherries",
+  },
+];
 </script>
 <template>
   <header>
     <div class="navbar">
       <div class="navbar-items">
         <span>{{ pageTitle }}</span>
-        <v-search-input />
+        <v-search-input
+          :suggestions="__suggestions"
+          :start-suggestions-after="0"
+        />
         <div>Account</div>
         <div>cart</div>
       </div>

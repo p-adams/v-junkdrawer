@@ -1,28 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-// replica suggestions data
-const _suggestions: Array<{ label: string; value: string }> = [
-  {
-    label: "apples",
-    value: "apples",
-  },
-  { label: "bananas", value: "bananas" },
-  {
-    label: "pears",
-    value: "pears",
-  },
-  {
-    label: "grapes",
-    value: "grapes",
-  },
-  {
-    label: "cherries",
-    value: "cherries",
-  },
-];
-
+const { startSuggestionsAfter = 0, suggestions } = defineProps<{
+  suggestions: Suggestions;
+  startSuggestionsAfter: number;
+}>();
 const filteredSuggestions = computed(() => {
-  return _suggestions.filter((suggestion) =>
+  return suggestions.filter((suggestion) =>
     suggestion.value.includes(query.value)
   );
 });
@@ -32,7 +15,9 @@ function detectMatch(suggestion: { label: string; value: string }) {
 }
 
 const query = ref("");
-const showSuggestions = computed(() => query.value.length > 0);
+const showSuggestions = computed(
+  () => query.value.length > startSuggestionsAfter
+);
 </script>
 <template>
   <div class="search-input">

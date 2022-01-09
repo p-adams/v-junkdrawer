@@ -1,11 +1,6 @@
 <script lang="ts" setup>
 import VHeader from "./v-header.vue";
 import { useRouter } from "vue-router";
-const route = useRouter();
-
-route.onError((e) => {
-  console.log("not found", e);
-});
 </script>
 <template>
   <div>
