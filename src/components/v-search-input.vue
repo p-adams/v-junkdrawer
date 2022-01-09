@@ -1,5 +1,31 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+// replica suggestions data
+const _suggestions = [
+  {
+    label: "apples",
+    value: "apples",
+  },
+  { label: "bananas", value: "bananas" },
+  {
+    label: "pears",
+    value: "pears",
+  },
+  {
+    label: "grapes",
+    value: "grapes",
+  },
+  {
+    label: "cherries",
+    value: "cherries",
+  },
+];
+
+const filteredSuggestions = computed(() => {
+  return _suggestions.filter((suggestion) =>
+    suggestion.value.includes(query.value)
+  );
+});
 
 const query = ref("");
 const showSuggestions = computed(() => query.value.length > 0);
@@ -9,11 +35,9 @@ const showSuggestions = computed(() => query.value.length > 0);
     <input v-model="query" />
     <div class="suggestions-container" v-show="showSuggestions">
       <ul>
-        <li>Apples</li>
-        <li>Bananas</li>
-        <li>Pears</li>
-        <li>Grapes</li>
-        <li>Cherries</li>
+        <li v-for="suggestion in filteredSuggestions">
+          {{ suggestion.label }}
+        </li>
       </ul>
     </div>
   </div>
