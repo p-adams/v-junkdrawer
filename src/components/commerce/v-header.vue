@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import VSearchInput from "./v-search-input.vue";
+import VSearchInput from "../v-search-input.vue";
 defineProps<{ pageTitle: string }>();
 </script>
 <template>
