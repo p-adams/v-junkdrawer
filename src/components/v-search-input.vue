@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 // replica suggestions data
-const _suggestions = [
+const _suggestions: Array<{ label: string; value: string }> = [
   {
     label: "apples",
     value: "apples",
@@ -27,6 +27,10 @@ const filteredSuggestions = computed(() => {
   );
 });
 
+function detectMatch(suggestion: { label: string; value: string }) {
+  return suggestion.label.replaceAll(query.value, `<b>${query.value}</b>`);
+}
+
 const query = ref("");
 const showSuggestions = computed(() => query.value.length > 0);
 </script>
@@ -36,7 +40,7 @@ const showSuggestions = computed(() => query.value.length > 0);
     <div class="suggestions-container" v-show="showSuggestions">
       <ul>
         <li v-for="suggestion in filteredSuggestions">
-          {{ suggestion.label }}
+          <span v-html="detectMatch(suggestion)"></span>
         </li>
       </ul>
     </div>
