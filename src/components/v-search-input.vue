@@ -34,7 +34,7 @@ const queryInput = computed({
     }
     return query.value;
   },
-  set: (val: any) => {
+  set: (val: string) => {
     query.value = val;
   },
 });
