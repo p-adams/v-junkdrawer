@@ -9,8 +9,8 @@ const { startSuggestionsAfter = 0, suggestions } = defineProps<{
 const emits = defineEmits(["search"]);
 
 const query = ref<string>("");
-const selectedSuggestion = ref<Suggestion>();
-const focusSuggestionContainer = ref<-1 | 0>(-1);
+const selectedSuggestion = ref<Suggestion>({ label: "", value: "" });
+
 const suggestionRef = ref<HTMLDivElement>();
 const inputRef = ref<HTMLInputElement>();
 const filteredSuggestions = computed(() => {
@@ -30,11 +30,7 @@ const selectedSuggestionIndex = computed(() =>
 );
 
 const queryInput = computed({
-  // FIX!: bug that prevents input after selecting a suggestion
   get: () => {
-    if (selectedSuggestion.value && inputRef.value !== document.activeElement) {
-      // return selectedSuggestion.value.value;
-    }
     return query.value;
   },
   set: (val: string) => {
@@ -42,14 +38,6 @@ const queryInput = computed({
   },
 });
 
-function focusSuggestions() {
-  // set focus on suggestions container
-  inputRef.value?.blur();
-  suggestionRef.value?.focus();
-  focusSuggestionContainer.value = 0;
-  // default first suggestion as selected
-  selectedSuggestion.value = filteredSuggestions.value[0];
-}
 function navigatePrev() {
   const prev = filteredSuggestions.value[selectedSuggestionIndex.value - 1];
   if (!prev) return;
@@ -67,21 +55,24 @@ function detectMatch(suggestion: { label: string; value: string }) {
 }
 
 function search(suggestion: Suggestion) {
-  // triggers queryInput to recompute and sync selected with input value
-  // selectedSuggestion.value = suggestion;
+  if (!suggestion) return;
+  query.value = suggestion.value;
   emits("search", suggestion.value);
 }
 </script>
 <template>
   <div class="search-input">
-    <input v-model="queryInput" @keyup.down="focusSuggestions" ref="inputRef" />
+    <input
+      v-model="queryInput"
+      @keyup.down="navigateNext"
+      @keyup.up="navigatePrev"
+      @keyup.enter="search(selectedSuggestion)"
+      ref="inputRef"
+    />
     <div
       class="suggestions-container"
       v-show="showSuggestions"
       ref="suggestionRef"
-      :tabindex="focusSuggestionContainer"
-      @keyup.down="navigateNext"
-      @keyup.up="navigatePrev"
     >
       <ul>
         <li
