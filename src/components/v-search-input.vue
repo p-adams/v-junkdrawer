@@ -6,6 +6,8 @@ const { startSuggestionsAfter = 0, suggestions } = defineProps<{
   startSuggestionsAfter: number;
 }>();
 
+const emits = defineEmits(["search"]);
+
 const query = ref<string>("");
 const selectedSuggestion = ref<Suggestion>();
 const focusSuggestionContainer = ref<-1 | 0>(-1);
@@ -22,15 +24,16 @@ const showSuggestions = computed(
 );
 
 const selectedSuggestionIndex = computed(() =>
-  suggestions.findIndex(
+  filteredSuggestions.value.findIndex(
     (suggestion) => suggestion.label === selectedSuggestion?.value?.label
   )
 );
 
 const queryInput = computed({
+  // FIX!: bug that prevents input after selecting a suggestion
   get: () => {
-    if (selectedSuggestion.value) {
-      return selectedSuggestion.value.value;
+    if (selectedSuggestion.value && inputRef.value !== document.activeElement) {
+      // return selectedSuggestion.value.value;
     }
     return query.value;
   },
@@ -45,17 +48,28 @@ function focusSuggestions() {
   suggestionRef.value?.focus();
   focusSuggestionContainer.value = 0;
   // default first suggestion as selected
-  selectedSuggestion.value = suggestions[0];
+  selectedSuggestion.value = filteredSuggestions.value[0];
 }
 function navigatePrev() {
-  selectedSuggestion.value = suggestions[selectedSuggestionIndex.value - 1];
+  const prev = filteredSuggestions.value[selectedSuggestionIndex.value - 1];
+  if (!prev) return;
+
+  selectedSuggestion.value = prev;
 }
 function navigateNext() {
-  selectedSuggestion.value = suggestions[selectedSuggestionIndex.value + 1];
+  const next = filteredSuggestions.value[selectedSuggestionIndex.value + 1];
+  if (!next) return;
+  selectedSuggestion.value = next;
 }
 
 function detectMatch(suggestion: { label: string; value: string }) {
   return suggestion.label.replaceAll(query.value, `<b>${query.value}</b>`);
+}
+
+function search(suggestion: Suggestion) {
+  // triggers queryInput to recompute and sync selected with input value
+  // selectedSuggestion.value = suggestion;
+  emits("search", suggestion.value);
 }
 </script>
 <template>
@@ -73,6 +87,7 @@ function detectMatch(suggestion: { label: string; value: string }) {
         <li
           v-for="suggestion in filteredSuggestions"
           :class="suggestion.label === selectedSuggestion?.label && 'selected'"
+          @click="search(suggestion)"
         >
           <span v-html="detectMatch(suggestion)"></span>
         </li>
@@ -94,6 +109,9 @@ function detectMatch(suggestion: { label: string; value: string }) {
     li {
       padding: 8px;
       &.selected {
+        background: lightgrey;
+      }
+      &:hover {
         background: lightgrey;
       }
     }

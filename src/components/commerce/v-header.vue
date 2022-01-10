@@ -21,6 +21,9 @@ const __suggestions: Array<{ label: string; value: string }> = [
     value: "cherries",
   },
 ];
+function search(query: string) {
+  console.log("search: ", query);
+}
 </script>
 <template>
   <header>
@@ -30,6 +33,7 @@ const __suggestions: Array<{ label: string; value: string }> = [
         <v-search-input
           :suggestions="__suggestions"
           :start-suggestions-after="0"
+          @search="(q: string) => search(q)"
         />
         <div>Account</div>
         <div>cart</div>
