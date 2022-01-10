@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
+onMounted(() => {
+  document.addEventListener("click", onClickOutside);
+});
+onUnmounted(() => {
+  document.removeEventListener("click", onClickOutside);
+});
 
 const { startSuggestionsAfter = 0, suggestions } = defineProps<{
   suggestions: Suggestions;
@@ -10,7 +16,7 @@ const emits = defineEmits(["search"]);
 
 const query = ref<string>("");
 const selectedSuggestion = ref<Suggestion>({ label: "", value: "" });
-
+const showSuggestions = ref(false);
 const suggestionRef = ref<HTMLDivElement>();
 const inputRef = ref<HTMLInputElement>();
 const filteredSuggestions = computed(() => {
@@ -19,10 +25,6 @@ const filteredSuggestions = computed(() => {
   );
 });
 
-const showSuggestions = computed(
-  () => query.value.length > startSuggestionsAfter
-);
-
 const selectedSuggestionIndex = computed(() =>
   filteredSuggestions.value.findIndex(
     (suggestion) => suggestion.label === selectedSuggestion?.value?.label
@@ -30,10 +32,12 @@ const selectedSuggestionIndex = computed(() =>
 );
 
 const queryInput = computed({
+  // TODO: populate input with selected suggestion
   get: () => {
     return query.value;
   },
   set: (val: string) => {
+    showSuggestions.value = query.value.length >= startSuggestionsAfter;
     query.value = val;
   },
 });
@@ -48,6 +52,12 @@ function navigateNext() {
   const next = filteredSuggestions.value[selectedSuggestionIndex.value + 1];
   if (!next) return;
   selectedSuggestion.value = next;
+}
+
+function onClickOutside(e: MouseEvent) {
+  if (e.target !== document.activeElement) {
+    showSuggestions.value = false;
+  }
 }
 
 function detectMatch(suggestion: { label: string; value: string }) {
@@ -99,9 +109,7 @@ function search(suggestion: Suggestion) {
     z-index: 1;
     li {
       padding: 8px;
-      &.selected {
-        background: lightgrey;
-      }
+      &.selected,
       &:hover {
         background: lightgrey;
       }
