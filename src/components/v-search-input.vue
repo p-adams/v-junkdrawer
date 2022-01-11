@@ -31,26 +31,14 @@ const selectedSuggestionIndex = computed(() =>
   )
 );
 
-const queryInput = computed({
-  get: () => {
-    return query.value;
-  },
-  set: (val: string) => {
-    showSuggestions.value = query.value.length >= startSuggestionsAfter;
-    query.value = val;
-  },
-});
-
-function navigatePrev() {
-  const prev = filteredSuggestions.value[selectedSuggestionIndex.value - 1];
-  if (!prev) return;
-
-  selectedSuggestion.value = prev;
-}
-function navigateNext() {
-  const next = filteredSuggestions.value[selectedSuggestionIndex.value + 1];
-  if (!next) return;
-  selectedSuggestion.value = next;
+function navigateSuggestions(direction: "prev" | "next") {
+  const index =
+    direction === "prev"
+      ? selectedSuggestionIndex.value - 1
+      : selectedSuggestionIndex.value + 1;
+  const suggestion = filteredSuggestions.value[index];
+  if (!suggestion) return;
+  selectedSuggestion.value = suggestion;
 }
 
 function onClickOutside(e: MouseEvent) {
@@ -72,15 +60,15 @@ function search(suggestion: Suggestion) {
 <template>
   <div class="search-input">
     <input
-      v-model="queryInput"
-      @keyup.down="navigateNext"
-      @keyup.up="navigatePrev"
+      v-model="query"
+      @keyup.down="navigateSuggestions('next')"
+      @keyup.up="navigateSuggestions('prev')"
       @keyup.enter="search(selectedSuggestion)"
       ref="inputRef"
     />
     <div
       class="suggestions-container"
-      v-show="showSuggestions"
+      v-show="query.length > startSuggestionsAfter"
       ref="suggestionRef"
     >
       <ul>
