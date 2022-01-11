@@ -32,7 +32,6 @@ const selectedSuggestionIndex = computed(() =>
 );
 
 const queryInput = computed({
-  // TODO: populate input with selected suggestion
   get: () => {
     return query.value;
   },
