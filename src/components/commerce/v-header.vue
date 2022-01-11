@@ -13,6 +13,10 @@ const __suggestions: Array<{ label: string; value: string }> = [
     value: "pears",
   },
   {
+    label: "pears and cheese",
+    value: "pears and cheese",
+  },
+  {
     label: "grapes",
     value: "grapes",
   },
