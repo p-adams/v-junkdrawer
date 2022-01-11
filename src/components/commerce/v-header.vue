@@ -1,30 +1,8 @@
 <script setup lang="ts">
 import VSearchInput from "../v-search-input.vue";
-// replica suggestions data
+import { __fruits } from "./mock_data";
 defineProps<{ pageTitle: string }>();
-const __suggestions: Array<{ label: string; value: string }> = [
-  {
-    label: "apples",
-    value: "apples",
-  },
-  { label: "bananas", value: "bananas" },
-  {
-    label: "pears",
-    value: "pears",
-  },
-  {
-    label: "pears and cheese",
-    value: "pears and cheese",
-  },
-  {
-    label: "grapes",
-    value: "grapes",
-  },
-  {
-    label: "cherries",
-    value: "cherries",
-  },
-];
+
 function search(query: string) {
   console.log("search: ", query);
 }
@@ -36,7 +14,7 @@ function search(query: string) {
         <router-link to="/v-commerce/storefront">{{ pageTitle }}</router-link>
 
         <v-search-input
-          :suggestions="__suggestions"
+          :suggestions="__fruits"
           :start-suggestions-after="0"
           @search="(q: string) => search(q)"
         />
