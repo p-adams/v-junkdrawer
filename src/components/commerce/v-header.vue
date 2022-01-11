@@ -33,7 +33,8 @@ function search(query: string) {
   <header>
     <div class="navbar">
       <div class="navbar-items">
-        <span>{{ pageTitle }}</span>
+        <router-link to="/v-commerce/storefront">{{ pageTitle }}</router-link>
+
         <v-search-input
           :suggestions="__suggestions"
           :start-suggestions-after="0"
