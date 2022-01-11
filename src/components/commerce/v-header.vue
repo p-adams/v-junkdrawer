@@ -46,6 +46,9 @@ function search(query: string) {
     <nav>
       <ul>
         <li>
+          <router-link to="/v-commerce/storefront/fruits">Fruits</router-link>
+        </li>
+        <li>
           <router-link to="/v-commerce/storefront/books">Books</router-link>
         </li>
 

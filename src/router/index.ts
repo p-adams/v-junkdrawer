@@ -16,6 +16,7 @@ import BookPage from "../components/commerce/storefront_pages/book-page.vue";
 import ComputerPage from "../components/commerce/storefront_pages/computer-page.vue";
 import GadgetPage from "../components/commerce/storefront_pages/gadget-page.vue";
 import ErrorPage from "../components/commerce/storefront_pages/error-page.vue";
+import FruitPage from "../components/commerce/storefront_pages/fruit-page.vue";
 import { createErrorPage } from "./router-utils";
 const router = createRouter({
   history: createWebHashHistory(),
@@ -77,6 +78,7 @@ const router = createRouter({
           component: VStorefront,
           name: "Storefront",
           children: [
+            { path: "fruits", component: FruitPage, name: "Fruit Page" },
             { path: "books", component: BookPage, name: "Book Page" },
             {
               path: "computers",
