@@ -1,0 +1,7 @@
+import BookPage from "./book-page.vue";
+import ComputerPage from "./computer-page.vue";
+import GadgetPage from "./gadget-page.vue";
+import ErrorPage from "./error-page.vue";
+import FruitPage from "./fruit-page.vue";
+
+export { BookPage, ComputerPage, GadgetPage, ErrorPage, FruitPage };

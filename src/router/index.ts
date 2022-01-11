@@ -12,11 +12,8 @@ import VOrderSummaryConsumer from "../components/commerce/v-order-summary-consum
 import VStorefront from "../components/commerce/v-storefront.vue";
 import ButtonHome from "../components/button/button-home.vue";
 import ActionButtonConsumer from "../components/button/v-action-button-consumer.vue";
-import BookPage from "../components/commerce/storefront_pages/book-page.vue";
-import ComputerPage from "../components/commerce/storefront_pages/computer-page.vue";
-import GadgetPage from "../components/commerce/storefront_pages/gadget-page.vue";
-import ErrorPage from "../components/commerce/storefront_pages/error-page.vue";
-import FruitPage from "../components/commerce/storefront_pages/fruit-page.vue";
+import * as page from "../components/commerce/storefront_pages";
+
 import { createErrorPage } from "./router-utils";
 const router = createRouter({
   history: createWebHashHistory(),
@@ -78,23 +75,23 @@ const router = createRouter({
           component: VStorefront,
           name: "Storefront",
           children: [
-            { path: "fruits", component: FruitPage, name: "Fruit Page" },
-            { path: "books", component: BookPage, name: "Book Page" },
+            { path: "fruits", component: page.FruitPage, name: "Fruit Page" },
+            { path: "books", component: page.BookPage, name: "Book Page" },
             {
               path: "computers",
-              component: ComputerPage,
+              component: page.ComputerPage,
               name: "Computer Page",
             },
             {
               path: "gadgets",
-              component: GadgetPage,
+              component: page.GadgetPage,
               name: "Gadgets Page",
             },
             {
               ...createErrorPage({
                 path: "/v-commerce/storefront",
                 name: "Not Found",
-                component: ErrorPage,
+                component: page.ErrorPage,
               }),
             },
           ],
