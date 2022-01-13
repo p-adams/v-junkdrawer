@@ -74,7 +74,7 @@ const router = createRouter({
           path: "storefront",
           component: VStorefront,
           name: "Storefront",
-          redirect: "home",
+          redirect: "/v-commerce/storefront/home",
           children: [
             {
               path: "home",
