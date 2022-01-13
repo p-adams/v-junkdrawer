@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import VSearchInput from "../v-search-input.vue";
 import { __fruits } from "./mock_data";
+
 defineProps<{ pageTitle: string }>();
 
 function search(query: string) {
@@ -22,7 +23,7 @@ function search(query: string) {
         <div>cart</div>
       </div>
     </div>
-    <nav>
+    <nav class="shop-nav">
       <ul>
         <li>
           <router-link to="/v-commerce/storefront/fruits">Fruits</router-link>

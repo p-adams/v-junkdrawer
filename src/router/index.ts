@@ -88,6 +88,11 @@ const router = createRouter({
               name: "Gadgets Page",
             },
             {
+              path: "r/:id",
+              component: page.ResultPage,
+              name: "ResultPage",
+            },
+            {
               ...createErrorPage({
                 path: "/v-commerce/storefront",
                 name: "Not Found",

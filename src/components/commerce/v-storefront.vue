@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import VHeader from "./v-header.vue";
-import { useRouter } from "vue-router";
 </script>
 <template>
   <div>
