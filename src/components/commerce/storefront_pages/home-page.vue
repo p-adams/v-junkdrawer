@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import pageTemplate from "./page-template.vue";
+</script>
 <template>
-  <div><h2>Storefront home</h2></div>
+  <div><page-template /></div>
 </template>
 <style></style>
