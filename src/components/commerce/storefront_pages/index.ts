@@ -4,4 +4,13 @@ import GadgetPage from "./gadget-page.vue";
 import ErrorPage from "./error-page.vue";
 import FruitPage from "./fruit-page.vue";
 import ResultPage from "./result-page.vue";
-export { BookPage, ComputerPage, GadgetPage, ErrorPage, FruitPage, ResultPage };
+import HomePage from "./home-page.vue";
+export {
+  BookPage,
+  ComputerPage,
+  GadgetPage,
+  ErrorPage,
+  FruitPage,
+  ResultPage,
+  HomePage,
+};

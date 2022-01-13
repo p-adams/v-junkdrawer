@@ -4,6 +4,7 @@ import VHeader from "./v-header.vue";
 <template>
   <div>
     <v-header page-title="storefront" />
+
     <main>
       <router-view></router-view>
     </main>
