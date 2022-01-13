@@ -1,24 +1,15 @@
 <script setup lang="ts">
-import VSearchInput from "../v-search-input.vue";
-import { __fruits } from "./mock_data";
-
 defineProps<{ pageTitle: string }>();
-
-function search(query: string) {
-  console.log("search: ", query);
-}
 </script>
 <template>
   <header>
     <div class="navbar">
       <div class="navbar-items">
-        <router-link to="/v-commerce/storefront">{{ pageTitle }}</router-link>
+        <router-link to="/v-commerce/storefront" class="nav-title">{{
+          pageTitle
+        }}</router-link>
 
-        <v-search-input
-          :predictions="__fruits"
-          :start-predictions-after="0"
-          @search="(q: string) => search(q)"
-        />
+        <slot name="search" />
         <div>Account</div>
         <div>cart</div>
       </div>
@@ -61,9 +52,12 @@ header {
       span,
       div {
         flex: 1;
+        display: flex;
+        justify-content: end;
+        margin-right: 10px;
       }
-      .search-input {
-        flex: 2;
+      .nav-title {
+        flex: 1;
       }
     }
   }

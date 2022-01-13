@@ -83,6 +83,7 @@ function search(prediction: Prediction) {
 </template>
 <style lang="scss" scoped>
 .search-input {
+  flex: 2;
   display: flex;
   flex-direction: column;
   border: 1px solid lightgray;
