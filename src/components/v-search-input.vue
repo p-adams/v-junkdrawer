@@ -7,77 +7,75 @@ onUnmounted(() => {
   document.removeEventListener("click", onClickOutside);
 });
 
-const { startSuggestionsAfter = 0, suggestions } = defineProps<{
-  suggestions: Suggestions;
-  startSuggestionsAfter: number;
+const { startPredictionsAfter = 0, predictions } = defineProps<{
+  predictions: Predictions;
+  startPredictionsAfter: number;
 }>();
 
 const emits = defineEmits(["search"]);
 
 const query = ref<string>("");
-const selectedSuggestion = ref<Suggestion>({ label: "", value: "" });
-const showSuggestions = ref(false);
-const suggestionRef = ref<HTMLDivElement>();
-const inputRef = ref<HTMLInputElement>();
-const filteredSuggestions = computed(() => {
-  return suggestions.filter((suggestion) =>
-    suggestion.value.includes(query.value)
+const selectedPrediction = ref<Prediction>({ label: "", value: "" });
+const showPredictions = ref(false);
+const filteredPredictions = computed(() => {
+  return predictions.filter((prediction) =>
+    prediction.value.includes(query.value)
   );
 });
 
-const selectedSuggestionIndex = computed(() =>
-  filteredSuggestions.value.findIndex(
-    (suggestion) => suggestion.label === selectedSuggestion?.value?.label
+const selectedPredictionIndex = computed(() =>
+  filteredPredictions.value.findIndex(
+    (prediction) => prediction.label === selectedPrediction?.value?.label
   )
 );
 
-function navigateSuggestions(direction: "prev" | "next") {
+function navigatePredictions(direction: "prev" | "next") {
   const index =
     direction === "prev"
-      ? selectedSuggestionIndex.value - 1
-      : selectedSuggestionIndex.value + 1;
-  const suggestion = filteredSuggestions.value[index];
-  if (!suggestion) return;
-  selectedSuggestion.value = suggestion;
+      ? selectedPredictionIndex.value - 1
+      : selectedPredictionIndex.value + 1;
+  const prediction = filteredPredictions.value[index];
+  if (!prediction) return;
+  selectedPrediction.value = prediction;
 }
 
 function onClickOutside(e: MouseEvent) {
   if (e.target !== document.activeElement) {
-    showSuggestions.value = false;
+    showPredictions.value = false;
   }
 }
 
-function detectMatch(suggestion: { label: string; value: string }) {
-  return suggestion.label.replaceAll(query.value, `<b>${query.value}</b>`);
+function detectMatch(prediction: Prediction) {
+  return prediction.label.replaceAll(query.value, `<b>${query.value}</b>`);
 }
 
-function search(suggestion: Suggestion) {
-  if (!suggestion) return;
-  query.value = suggestion.value;
-  emits("search", suggestion.value);
+function search(prediction: Prediction) {
+  if (!prediction) return;
+  query.value = prediction.value;
+  emits("search", prediction.value);
 }
 </script>
 <template>
   <div class="search-input">
     <input
       v-model="query"
-      @keyup.down="navigateSuggestions('next')"
-      @keyup.up="navigateSuggestions('prev')"
-      @keyup.enter="search(selectedSuggestion)"
+      @keyup.down="navigatePredictions('next')"
+      @keyup.up="navigatePredictions('prev')"
+      @keyup.enter="search(selectedPrediction)"
       ref="inputRef"
     />
     <div
       class="suggestions-container"
-      v-show="query.length > startSuggestionsAfter"
+      v-show="query.length > startPredictionsAfter"
       ref="suggestionRef"
     >
       <ul>
         <li
-          v-for="suggestion in filteredSuggestions"
-          :class="suggestion.label === selectedSuggestion?.label && 'selected'"
-          @click="search(suggestion)"
+          v-for="prediction in filteredPredictions"
+          :class="prediction.label === selectedPrediction?.label && 'selected'"
+          @click="search(prediction)"
         >
-          <span v-html="detectMatch(suggestion)"></span>
+          <span v-html="detectMatch(prediction)"></span>
         </li>
       </ul>
     </div>

@@ -14,8 +14,8 @@ function search(query: string) {
         <router-link to="/v-commerce/storefront">{{ pageTitle }}</router-link>
 
         <v-search-input
-          :suggestions="__fruits"
-          :start-suggestions-after="0"
+          :predictions="__fruits"
+          :start-predictions-after="0"
           @search="(q: string) => search(q)"
         />
         <div>Account</div>

@@ -1,5 +1,5 @@
-interface Suggestion {
+interface Prediction {
   label: string;
   value: string;
 }
-type Suggestions = Array<Suggestion>;
+type Predictions = Array<Prediction>;

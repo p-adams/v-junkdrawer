@@ -37,7 +37,7 @@ export const products = [
   },
 ];
 
-export const __fruits: Suggestions = [
+export const __fruits: Predictions = [
   {
     label: "apples",
     value: "apples",
