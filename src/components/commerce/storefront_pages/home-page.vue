@@ -11,7 +11,7 @@ import VGrid from "../v-grid.vue";
       <template v-slot:left-side> left sidebar </template>
 
       <template v-slot:main-content>
-        <v-grid :col="3">
+        <v-grid :col="4" :gap="12">
           <div class="home-card">card a</div>
           <div class="home-card">card b</div>
           <div class="home-card">card c</div>
@@ -29,7 +29,9 @@ import VGrid from "../v-grid.vue";
 </template>
 <style lang="scss" scoped>
 .home-card {
-  width: 200px;
+  //width: 200px;
   height: 300px;
+  outline: 1px solid whitesmoke;
+  background-color: lightgray;
 }
 </style>

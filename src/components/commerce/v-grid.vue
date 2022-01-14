@@ -1,9 +1,17 @@
 <script setup lang="ts">
-defineProps<{ col: number }>();
+import { computed } from "vue";
+
+const props = defineProps<{ col: number; gap: number }>();
+
+const gridStyles = computed(() => {
+  return {
+    gridTemplateColumns: `repeat(${props.col}, 1fr)`,
+    gap: `${props.gap}px`,
+  };
+});
 </script>
 <template>
-  <!-- TODO: make props more flexible -->
-  <div class="v-grid" :style="{ gridTemplateColumns: `repeat(${col}, 1fr)` }">
+  <div class="v-grid" :style="{ ...gridStyles }">
     <slot />
   </div>
 </template>
