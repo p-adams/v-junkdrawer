@@ -4,7 +4,7 @@
     <header class="header">generic page template header</header>
     <nav class="nav">
       <ul>
-        <li><a></a></li>
+        <li><a>a</a></li>
       </ul>
     </nav>
     <article class="content">
@@ -17,6 +17,7 @@
 </template>
 <style lang="scss">
 .page-template-wrapper {
+  height: calc(100vh - 220px);
   display: grid;
   grid-template-areas:
     "header"
@@ -42,6 +43,31 @@
   }
   .footer {
     grid-area: footer;
+  }
+}
+@media (min-width: 500px) {
+  .page-template-wrapper {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+      "header header"
+      "nav nav"
+      "side content"
+      "ad footer";
+  }
+  .nav ul {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 700px) {
+  .page-template-wrapper {
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas:
+      "header header header"
+      "nav content side"
+      "nav content ad"
+      "footer footer footer";
   }
 }
 </style>
