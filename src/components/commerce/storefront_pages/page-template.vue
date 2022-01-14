@@ -1,18 +1,36 @@
 <script setup lang="ts"></script>
 <template>
   <div class="page-template-wrapper">
-    <header class="header">generic page template header</header>
-    <nav class="nav">
-      <ul>
-        <li><a>a</a></li>
-      </ul>
-    </nav>
+    <header class="header">
+      <slot name="header"></slot>
+    </header>
+    <!-- optional left side bar, ex:
+        <nav class="nav">
+            <ul>
+                <li><router-link to="somePath">link</router-link></li>
+            </ul>
+        </nav>
+    -->
+    <aside class="left-side">
+      <slot name="left-side"></slot>
+    </aside>
     <article class="content">
-      <h1>main</h1>
+      <slot name="main-content"> </slot>
     </article>
-    <aside class="side">sidebar</aside>
-    <div class="ad">ads</div>
-    <footer class="footer">footer</footer>
+    <!-- optional left side bar and ad space, ex:
+        <article class="ad-block">
+            <section class="ad">
+                <img .../>
+            </section>
+        </article>
+    -->
+    <aside class="right-side">
+      <slot name="right-side"></slot>
+    </aside>
+
+    <footer class="footer">
+      <slot name="footer"></slot>
+    </footer>
   </div>
 </template>
 <style lang="scss">
@@ -21,28 +39,27 @@
   display: grid;
   grid-template-areas:
     "header"
-    "nav"
+    "left-side"
     "content"
-    "side"
-    "ad"
+    "right-side"
     "footer";
   .header {
     grid-area: header;
   }
-  .nav {
-    grid-area: nav;
+  .left-side {
+    grid-area: left-side;
   }
   .content {
     grid-area: content;
   }
-  .side {
-    grid-area: side;
-  }
-  .ad {
-    grid-area: ad;
+  .right-side {
+    grid-area: right-side;
   }
   .footer {
     grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-self: end;
   }
 }
 @media (min-width: 500px) {
@@ -50,13 +67,9 @@
     grid-template-columns: 1fr 3fr;
     grid-template-areas:
       "header header"
-      "nav nav"
-      "side content"
-      "ad footer";
-  }
-  .nav ul {
-    display: flex;
-    justify-content: space-between;
+      "left-side left-side"
+      "right-side content"
+      "right-side footer";
   }
 }
 
@@ -65,8 +78,8 @@
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-areas:
       "header header header"
-      "nav content side"
-      "nav content ad"
+      "left-side content right-side"
+      "left-side content right-side"
       "footer footer footer";
   }
 }
