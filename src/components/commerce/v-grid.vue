@@ -1,3 +1,14 @@
-<script setup lang="ts"></script>
-<template>generic grid page</template>
-<style lang="scss" scoped></style>
+<script setup lang="ts">
+defineProps<{ col: number }>();
+</script>
+<template>
+  <!-- TODO: make props more flexible -->
+  <div class="v-grid" :style="{ gridTemplateColumns: `repeat(${col}, 1fr)` }">
+    <slot />
+  </div>
+</template>
+<style lang="scss" scoped>
+.v-grid {
+  display: grid;
+}
+</style>
