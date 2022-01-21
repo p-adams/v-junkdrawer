@@ -1,4 +1,4 @@
 <script setup lang="ts"></script>
 <template>
-  <div>order summary consumer</div>
+  <div>order summary</div>
 </template>
