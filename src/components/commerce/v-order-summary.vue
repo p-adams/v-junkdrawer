@@ -9,5 +9,8 @@
 <style lang="scss" scoped>
 .order-summary-container {
   border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 </style>
