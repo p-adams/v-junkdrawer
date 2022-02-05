@@ -12,7 +12,7 @@ import VOrderSummaryConsumer from "../components/commerce/v-order-summary-consum
 import VStorefront from "../components/commerce/v-storefront.vue";
 import ButtonHome from "../components/button/button-home.vue";
 import ActionButtonConsumer from "../components/button/v-action-button-consumer.vue";
-import VTabCardConsumer from "../components/cards/v-tab-card-consumer.vue";
+import VTabCardConsumer from "../components/cards/tab-cards/v-tab-card-consumer.vue";
 import * as page from "../components/commerce/storefront_pages";
 
 import { createErrorPage } from "./router-utils";
