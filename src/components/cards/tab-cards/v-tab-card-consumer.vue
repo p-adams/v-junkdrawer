@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import VTabCard from "./v-tab-card.vue";
 import { tabs } from "./tab-card/tabs";
-const { tabA_, tabB_, tabC_, tabD_ } = tabs;
+const [tabA_, tabB_, tabC_, tabD_] = tabs;
 const flipped = ref(false);
 </script>
 <template>
@@ -21,10 +21,9 @@ const flipped = ref(false);
     </header>
     <section>
       <div class="v-tab-card-consumer-container">
-        <v-tab-card :tabs="tabA_.tabs" />
-        <v-tab-card :tabs="tabB_.tabs" />
-        <v-tab-card :tabs="tabC_.tabs" />
-        <v-tab-card :tabs="tabD_.tabs" />
+        <div v-for="tab in tabs">
+          <v-tab-card :tabs="tab.tabs" />
+        </div>
       </div>
     </section>
   </article>

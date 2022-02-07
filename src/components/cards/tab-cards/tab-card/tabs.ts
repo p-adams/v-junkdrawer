@@ -35,4 +35,4 @@ const tabD_: ITab = {
   ],
 };
 
-export const tabs = { tabA_, tabB_, tabC_, tabD_ };
+export const tabs = [tabA_, tabB_, tabC_, tabD_];
