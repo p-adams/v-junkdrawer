@@ -1,16 +1,12 @@
 <script lang="ts" setup>
 import { computed, defineAsyncComponent, ref } from "vue";
-type Tab = { label: string; value: string; path?: string };
-// TODO: accept as props
-const tabs: Tab[] = [
-  { value: "A", label: "A" },
-  { value: "B", label: "B" },
-];
-const currentTab = ref(tabs[0]);
+const props = defineProps<{ tabs: Tab[] }>();
+
+const currentTab = ref(props.tabs[0]);
 
 const currentTabComponent = computed(() => {
   const key = currentTab.value.label.toLocaleLowerCase();
-  return defineAsyncComponent(() => import(`./v-tab-${key}.vue`));
+  return defineAsyncComponent(() => import(`./tab-card/v-tab-${key}.vue`));
 });
 </script>
 <template>

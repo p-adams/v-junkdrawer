@@ -3,3 +3,5 @@ interface Prediction {
   value: string;
 }
 type Predictions = Array<Prediction>;
+
+type Tab = { label: string; value: string; path?: string };
