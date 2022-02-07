@@ -1,30 +1,33 @@
 <script lang="ts" setup>
+import { ref } from "vue";
 import VTabCard from "./v-tab-card.vue";
-
-const tabsA: Tab[] = [
-  { value: "A", label: "A" },
-  { value: "Aa", label: "Aa" },
-];
-const tabsB: Tab[] = [
-  { value: "B", label: "B" },
-  { value: "Bb", label: "Bb" },
-];
-const tabsC: Tab[] = [
-  { value: "C", label: "C" },
-  { value: "Cc", label: "Cc" },
-];
-const tabsD: Tab[] = [
-  { value: "D", label: "D" },
-  { value: "Dd", label: "Dd" },
-];
+import { tabs } from "./tab-card/tabs";
+const { tabA_, tabB_, tabC_, tabD_ } = tabs;
+const flipped = ref(false);
 </script>
 <template>
-  <div class="v-tab-card-consumer-container">
-    <v-tab-card :tabs="tabsA" />
-    <v-tab-card :tabs="tabsB" />
-    <v-tab-card :tabs="tabsC" />
-    <v-tab-card :tabs="tabsD" />
-  </div>
+  <article>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <label for="flipTabs">
+              Flip
+              <input type="checkbox" v-model="flipped" />
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+      <div class="v-tab-card-consumer-container">
+        <v-tab-card :tabs="tabA_.tabs" />
+        <v-tab-card :tabs="tabB_.tabs" />
+        <v-tab-card :tabs="tabC_.tabs" />
+        <v-tab-card :tabs="tabD_.tabs" />
+      </div>
+    </section>
+  </article>
 </template>
 <style lang="scss" scoped>
 .v-tab-card-consumer-container {
