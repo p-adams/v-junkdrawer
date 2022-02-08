@@ -24,9 +24,8 @@ const flipped = ref(false);
           <div v-if="!flipped">
             <v-tab-card :tabs="tabs" :current-tab="tabs[0]" />
           </div>
-          <div v-else>
-            <v-tab-card :tabs="tabs" :current-tab="tabs[0]" />
-            <v-tab-card :tabs="tabs" :current-tab="tabs[1]" />
+          <div v-else v-for="(_, i) in tabs">
+            <v-tab-card :tabs="tabs" :current-tab="tabs[i]" />
           </div>
         </div>
       </div>
@@ -37,11 +36,14 @@ const flipped = ref(false);
 .v-tab-card-consumer-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  column-gap: 10px;
   grid-template-areas:
     "tabA_ tabB_"
     "tabC_ tabD_";
 
-  &.flip {
+  .v-tab-card-container {
+    margin-bottom: 10px;
   }
 
   .tabA_ {
@@ -58,6 +60,15 @@ const flipped = ref(false);
 
   .tabD_ {
     grid-area: tabD_;
+  }
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "tabA_"
+      "tabB_"
+      "tabC_"
+      "tabD_";
   }
 }
 </style>
