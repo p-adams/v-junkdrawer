@@ -21,7 +21,13 @@ const flipped = ref(false);
     <section>
       <div class="v-tab-card-consumer-container">
         <div v-for="tab in tabs" :class="[tab.name]">
-          <v-tab-card :tabs="tab.tabs" />
+          <div v-if="!flipped">
+            <v-tab-card :tabs="tab.tabs" :current-tab="tab.tabs[0]" />
+          </div>
+          <div v-else>
+            <v-tab-card :tabs="tab.tabs" :current-tab="tab.tabs[0]" />
+            <v-tab-card :tabs="tab.tabs" :current-tab="tab.tabs[1]" />
+          </div>
         </div>
       </div>
     </section>
@@ -34,6 +40,9 @@ const flipped = ref(false);
   grid-template-areas:
     "tabA_ tabB_"
     "tabC_ tabD_";
+
+  &.flip {
+  }
 
   .tabA_ {
     grid-area: tabA_;

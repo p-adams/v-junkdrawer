@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 import { computed, defineAsyncComponent, ref } from "vue";
-const props = defineProps<{ tabs: Tab[] }>();
 
-const currentTab = ref(props.tabs[0]);
+const props = defineProps<{ tabs: Tab[]; currentTab?: Tab }>();
 
+const currentTab = ref(props.currentTab);
 const currentTabComponent = computed(() => {
-  const key = currentTab.value.label.toLocaleLowerCase();
+  const key = currentTab?.value?.label.toLocaleLowerCase();
   return defineAsyncComponent(() => import(`./tab-card/v-tab-${key}.vue`));
 });
 </script>
 <template>
-  <article :class="['v-tab-card-container', `${currentTab.label}`]">
+  <article class="v-tab-card-container">
     <header>
       <div v-for="tab in tabs" class="tab">
         <span
-          :class="['navigation', tab.label === currentTab.label && 'active']"
+          :class="['navigation', tab.label === currentTab?.label && 'active']"
           @click="currentTab = tab"
         ></span>
       </div>
