@@ -4,7 +4,7 @@ interface ITab {
 }
 
 const tabA_: ITab = {
-  name: "tab a",
+  name: "tabA_",
   tabs: [
     { value: "A", label: "A" },
     { value: "Aa", label: "Aa" },
@@ -12,7 +12,7 @@ const tabA_: ITab = {
 };
 
 const tabB_: ITab = {
-  name: "tab b",
+  name: "tabB_",
   tabs: [
     { value: "B", label: "B" },
     { value: "Bb", label: "Bb" },
@@ -20,7 +20,7 @@ const tabB_: ITab = {
 };
 
 const tabC_: ITab = {
-  name: "tab c",
+  name: "tabC_",
   tabs: [
     { value: "C", label: "C" },
     { value: "Cc", label: "Cc" },
@@ -28,7 +28,7 @@ const tabC_: ITab = {
 };
 
 const tabD_: ITab = {
-  name: "tab d",
+  name: "tabD_",
   tabs: [
     { value: "D", label: "D" },
     { value: "Dd", label: "Dd" },

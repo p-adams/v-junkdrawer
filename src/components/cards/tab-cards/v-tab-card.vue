@@ -10,10 +10,13 @@ const currentTabComponent = computed(() => {
 });
 </script>
 <template>
-  <article class="v-tab-card-container">
+  <article :class="['v-tab-card-container', `${currentTab.label}`]">
     <header>
       <div v-for="tab in tabs" class="tab">
-        <span class="navigation" @click="currentTab = tab"></span>
+        <span
+          :class="['navigation', tab.label === currentTab.label && 'active']"
+          @click="currentTab = tab"
+        ></span>
       </div>
     </header>
     <section>
@@ -39,6 +42,9 @@ const currentTabComponent = computed(() => {
     border-radius: 50%;
     background-color: gray;
     cursor: pointer;
+    &.active {
+      background-color: #1976d2;
+    }
   }
   section {
     display: flex;
