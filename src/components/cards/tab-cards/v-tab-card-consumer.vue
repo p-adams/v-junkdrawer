@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import VTabCard from "./v-tab-card.vue";
-import { tabs } from "./tab-card/tabs";
+import { tabs as cardTabs } from "./tab-card/tabs";
 const flipped = ref(false);
 </script>
 <template>
@@ -20,13 +20,13 @@ const flipped = ref(false);
     </header>
     <section>
       <div class="v-tab-card-consumer-container">
-        <div v-for="tab in tabs" :class="[tab.name]">
+        <div v-for="{ name, tabs } in cardTabs" :class="[name]">
           <div v-if="!flipped">
-            <v-tab-card :tabs="tab.tabs" :current-tab="tab.tabs[0]" />
+            <v-tab-card :tabs="tabs" :current-tab="tabs[0]" />
           </div>
           <div v-else>
-            <v-tab-card :tabs="tab.tabs" :current-tab="tab.tabs[0]" />
-            <v-tab-card :tabs="tab.tabs" :current-tab="tab.tabs[1]" />
+            <v-tab-card :tabs="tabs" :current-tab="tabs[0]" />
+            <v-tab-card :tabs="tabs" :current-tab="tabs[1]" />
           </div>
         </div>
       </div>

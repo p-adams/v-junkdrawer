@@ -43,7 +43,7 @@ const currentTabComponent = computed(() => {
     background-color: gray;
     cursor: pointer;
     &.active {
-      background-color: #1976d2;
+      background-color: #5757e2;
     }
   }
   section {
