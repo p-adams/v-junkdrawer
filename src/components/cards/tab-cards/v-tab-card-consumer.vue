@@ -33,17 +33,18 @@ const flipped = ref(false);
   </article>
 </template>
 <style lang="scss" scoped>
+$gap: 10px;
 .v-tab-card-consumer-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
-  column-gap: 10px;
+  column-gap: $gap;
   grid-template-areas:
     "tabA_ tabB_"
     "tabC_ tabD_";
 
   .v-tab-card-container {
-    margin-bottom: 10px;
+    margin-bottom: $gap;
   }
 
   .tabA_ {
