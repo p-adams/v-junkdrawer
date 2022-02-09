@@ -13,6 +13,8 @@ import VStorefront from "../components/commerce/v-storefront.vue";
 import ButtonHome from "../components/button/button-home.vue";
 import ActionButtonConsumer from "../components/button/v-action-button-consumer.vue";
 import VTabCardConsumer from "../components/cards/tab-cards/v-tab-card-consumer.vue";
+import VBusinessCardCreator from "../components/cards/business-cards/v-business-card-creator.vue";
+import CardHome from "../components/cards/card-home.vue";
 import * as page from "../components/commerce/storefront_pages";
 
 import { createErrorPage } from "./router-utils";
@@ -36,8 +38,20 @@ const router = createRouter({
     },
     {
       path: "/cards",
-      component: VTabCardConsumer,
+      component: CardHome,
       name: "Cards",
+      children: [
+        {
+          path: "business-card-creator",
+          component: VBusinessCardCreator,
+          name: "Business Card Creator",
+        },
+        {
+          path: "tab-card",
+          component: VTabCardConsumer,
+          name: "Tab Card",
+        },
+      ],
     },
     {
       path: "/modal",
