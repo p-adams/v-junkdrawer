@@ -16,7 +16,7 @@ const _DEFAULT = {
 };
 const data = ref<BusinessCardData>(_DEFAULT);
 
-function update(key: string, e: HTMLElementEvent<HTMLInputElement>) {
+function update(key: string, e: FormInputEvent) {
   data.value.name[key] = e.target.value;
 }
 </script>
@@ -32,20 +32,18 @@ function update(key: string, e: HTMLElementEvent<HTMLInputElement>) {
           <label for="first">
             First
             <input
-              @input="(e: Event) => update('first', e as HTMLElementEvent<HTMLInputElement>)"
+              @input="(e: Event) => update('first', e as FormInputEvent)"
             />
           </label>
           <label for="middle">
             Middle
             <input
-              @input="(e: Event) => update('middle', e as HTMLElementEvent<HTMLInputElement>)"
+              @input="(e: Event) => update('middle', e as FormInputEvent)"
             />
           </label>
           <label for="last">
             Last
-            <input
-              @input="(e: Event) => update('last', e as HTMLElementEvent<HTMLInputElement>)"
-            />
+            <input @input="(e: Event) => update('last', e as FormInputEvent)" />
           </label>
         </section>
       </form>

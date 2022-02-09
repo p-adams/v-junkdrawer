@@ -2,6 +2,8 @@ type HTMLElementEvent<T extends HTMLElement> = Event & {
   target: T;
 };
 
+type FormInputEvent = HTMLElementEvent<HTMLInputElement>;
+
 type Name = { first: string; middle: string; last: string };
 
 type Address = {
