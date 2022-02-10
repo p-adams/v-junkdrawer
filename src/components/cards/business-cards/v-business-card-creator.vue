@@ -28,15 +28,16 @@ function update(key: string, e: FormInputEvent) {
     <section class="creator-main">
       <header>Creator</header>
       <form class="business-card-information-form-container">
-        <section class="name-wrapper">
+        <section class="name-input-group">
           <label for="first">
             First
             <input
+              autofocus
               @input="(e: Event) => update('first', e as FormInputEvent)"
             />
           </label>
           <label for="middle">
-            Middle
+            Middle Initial
             <input
               @input="(e: Event) => update('middle', e as FormInputEvent)"
             />
@@ -85,8 +86,27 @@ function update(key: string, e: FormInputEvent) {
     flex-direction: column;
     justify-content: space-around;
 
+    .business-card-information-form-container {
+      .name-input-group {
+        display: flex;
+        justify-content: space-between;
+        label {
+          display: flex;
+          flex-direction: column;
+          font-weight: 600;
+          color: black;
+          padding: 10px;
+          &:nth-child(1),
+          &:nth-child(3) {
+            flex: 3;
+          }
+          &:nth-child(2) {
+            flex: 1;
+          }
+        }
+      }
+    }
     .business-card-layout-container {
-      border: 1px solid red;
     }
   }
   .creator-sidebar {
