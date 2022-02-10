@@ -27,7 +27,7 @@ function update(key: string, e: FormInputEvent) {
     </header>
     <section class="creator-main">
       <header>Creator</header>
-      <form>
+      <form class="business-card-information-form-container">
         <section class="name-wrapper">
           <label for="first">
             First
@@ -47,6 +47,16 @@ function update(key: string, e: FormInputEvent) {
           </label>
         </section>
       </form>
+      <section class="business-card-layout-container">
+        <div class="card-layout">
+          <!-- default layout
+          header header
+          sidebar main
+          footer footer
+          -->
+          <v-business-card type="default" />
+        </div>
+      </section>
     </section>
     <aside class="creator-sidebar">
       <v-business-card type="default" :card-data="data" />
@@ -71,6 +81,13 @@ function update(key: string, e: FormInputEvent) {
   .creator-main {
     border: 1px solid lightgray;
     grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .business-card-layout-container {
+      border: 1px solid red;
+    }
   }
   .creator-sidebar {
     grid-area: sidebar;

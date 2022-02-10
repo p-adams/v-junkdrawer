@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
-defineProps<{ type: string; cardData: BusinessCardData }>();
+defineProps<{ type: string; cardData?: BusinessCardData }>();
 </script>
 <template>
   <article :class="['business-card', type]">
     <header class="header">header</header>
     <section class="main">
       main
-      <div>{{ cardData.name.first }}</div>
+      <div>{{ cardData?.name.first }}</div>
     </section>
     <aside class="sidebar">sidebar</aside>
     <footer class="footer">
