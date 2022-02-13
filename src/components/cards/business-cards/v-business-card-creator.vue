@@ -3,12 +3,22 @@ import { ref } from "vue";
 import VBusinessCard from "./v-business-card_default.vue";
 const _DEFAULT = {
   name: { first: "", middle: "", last: "" },
+  styles: null,
   image: "",
   address: {
     address1: "",
     city: "",
     state: "",
-    zip: 90210,
+    zip: -1,
+  },
+  company: {
+    name: "",
+    address1: {
+      city: "",
+      state: "",
+      zip: -1,
+    },
+    number: -1,
   },
   contact: {
     email: "",
@@ -28,7 +38,7 @@ function update(key: string, e: FormInputEvent) {
     <section class="creator-main">
       <header>Creator</header>
       <form class="business-card-information-form-container">
-        <section class="name-input-group">
+        <section class="form-section name-input-group">
           <label for="first">
             First
             <input
@@ -46,6 +56,9 @@ function update(key: string, e: FormInputEvent) {
             Last
             <input @input="(e: Event) => update('last', e as FormInputEvent)" />
           </label>
+        </section>
+        <section class="form-section company-name-input-group">
+          <label for="company"> Company name </label>
         </section>
       </form>
       <section class="business-card-layout-container">
@@ -87,6 +100,9 @@ function update(key: string, e: FormInputEvent) {
     justify-content: space-around;
 
     .business-card-information-form-container {
+      .form-section {
+        margin-bottom: 10px;
+      }
       .name-input-group {
         display: flex;
         justify-content: space-between;
