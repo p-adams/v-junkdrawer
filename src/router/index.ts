@@ -3,6 +3,7 @@ import Home from "../components/Home.vue";
 import Counter from "../components/Counter.vue";
 import ModalConsumer from "../components/modal/v-modal-consumer.vue";
 import TabsConsumer from "../components/tabs/v-tabs-consumer.vue";
+import InputConsumer from "../components/input/input-consumer.vue";
 import AccordionConsumer from "../components/accordion/v-accordion-consumer.vue";
 import RateLimitButtonConsumer from "../components/button/v-rate-limit-button-consumer.vue";
 import VLoaderConsumer from "../components/v-loader/v-loader-consumer.vue";
@@ -57,6 +58,11 @@ const router = createRouter({
       path: "/modal",
       component: ModalConsumer,
       name: "Modal",
+    },
+    {
+      path: "/input",
+      component: InputConsumer,
+      name: "Input",
     },
     {
       path: "/accordion",
