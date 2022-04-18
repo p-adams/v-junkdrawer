@@ -16,6 +16,7 @@ import ActionButtonConsumer from "../components/button/v-action-button-consumer.
 import VTabCardConsumer from "../components/cards/tab-cards/v-tab-card-consumer.vue";
 import VBusinessCardCreator from "../components/cards/business-cards/v-business-card-creator.vue";
 import CardHome from "../components/cards/card-home.vue";
+import ImageConsumer from "../components/image/image-consumer.vue";
 import * as page from "../components/commerce/storefront_pages";
 
 import { createErrorPage } from "./router-utils";
@@ -63,6 +64,11 @@ const router = createRouter({
       path: "/input",
       component: InputConsumer,
       name: "Input",
+    },
+    {
+      path: "/image",
+      component: ImageConsumer,
+      name: "Image",
     },
     {
       path: "/accordion",

@@ -27,6 +27,7 @@ const expand = ref(false);
     cursor: pointer;
 
     .label {
+      display: flex;
       border: none;
       text-transform: uppercase;
       color: white;
@@ -35,15 +36,13 @@ const expand = ref(false);
       padding: 10px;
       &.expanded {
         &::after {
-          content: ">";
+          content: "↓";
           display: inline-block;
-          transform: rotate(90deg);
         }
       }
       &::after {
-        content: ">";
+        content: "→";
         margin-left: 10px;
-        vertical-align: middle;
       }
     }
     ul {
